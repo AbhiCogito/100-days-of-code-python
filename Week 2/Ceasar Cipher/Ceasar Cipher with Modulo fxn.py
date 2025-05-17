@@ -11,10 +11,7 @@ def encrypt():
     for x in message:
         for index, y in enumerate(letters):
             if x == y:
-                if index + shift < 26:
-                    encrypted_message.append(letters[index + shift])
-                else:
-                    encrypted_message.append(letters[index + shift - 26])
+                encrypted_message.append(letters[(index + shift)%26])
     return(''.join(encrypted_message))
 
 def decrypt():
@@ -24,10 +21,7 @@ def decrypt():
      for x in message:
         for index, y in enumerate(letters):
             if x == y:
-                if index - shift < 0:
-                    encrypted_message.append(letters[26 + (index + shift)])
-                else:
-                    encrypted_message.append(letters[index - shift])
+                encrypted_message.append(letters[(index - shift)%26])
      return(''.join(encrypted_message))
 
 def cipher():
