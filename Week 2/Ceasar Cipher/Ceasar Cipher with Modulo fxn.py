@@ -7,9 +7,14 @@ letters = list(string.ascii_lowercase)
 def encrypt(message,shift):
     encrypted_message = []
     for x in message:
+        match = False
         for index, y in enumerate(letters):
             if x == y:
                 encrypted_message.append(letters[(index + shift)%26])
+                match = True
+                break
+        if not match:
+                encrypted_message.append(x)
     return(''.join(encrypted_message))
 
 def cipher():
@@ -25,4 +30,5 @@ def cipher():
         print(f"The decrypted message is {encrypt(message, -shift)}")
     else:
         print("Incorrect option selected. \n")
+
 cipher()
