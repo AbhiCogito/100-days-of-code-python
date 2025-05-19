@@ -20,11 +20,11 @@ def encrypt(message,shift):
 def cipher():
     print("Welcome to the Cipher Lab!!")
     work = input("Type 'encode' or 'e' to encrypt and 'decode' or 'd' to decrypt: ").rstrip().lower()
-    if work == "encode" or work == "e":
+    if work in ("encode", "e"):
         message = input("Enter the message that is to be encrypted: ").rstrip()
         shift = int(input("Enter the shift index: "))
         print(f"The encrypted message is {encrypt(message, shift)}")
-    elif work == "decode" or work == "d":
+    elif work in ("decode", "d"):
         message = input("Enter the message that is to be decrypted: ").rstrip()
         shift = int(input("Enter the shift index: "))
         print(f"The decrypted message is {encrypt(message, -shift)}")
