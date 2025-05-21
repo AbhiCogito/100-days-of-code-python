@@ -45,7 +45,6 @@ def player_choice(player_cards, player_wallet, player_bid, dealer_wallet, dealer
         print(f"Your cards are {player_cards} and the total is {sum(player_cards)}")
         if sum(player_cards) == 21:
             print("Blackjack!! You are lucky.")
-            player_wallet += player_bid
             return player_wallet, dealer_wallet
         elif sum(player_cards) > 21:
             print("Bust! You lose.")
