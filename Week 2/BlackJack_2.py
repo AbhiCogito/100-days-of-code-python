@@ -62,7 +62,7 @@ def players_turn(player_bid, player_wallet, player_cards, dealer_cards):
         elif players_sum < 21:
             hit_or_stand(player_cards, players_sum, player_wallet)
             return player_bid, player_wallet, player_cards, dealer_cards
-    else players_sum > 21:
+    elif players_sum > 21:
             if 11 in player_cards:
                 player_cards.remove(11)
                 player_cards.append(1)
