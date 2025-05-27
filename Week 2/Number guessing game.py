@@ -23,6 +23,7 @@ def game(counter, number):
                 print("You have already guessed this number.")
             else:
                 guesses.append(guess)
+                print(f"You have {counter} guesses remaining.")
                 break
 
         if guess == number:
