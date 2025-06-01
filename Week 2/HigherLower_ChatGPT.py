@@ -1,86 +1,96 @@
-from HL_data import data
 import os
 import random
+from HL_data import data
 
-os.system("clear")
-score = 0
+class HigherLowerGame:
+    def __init__(self):
+        self.score = 0
+        self.remaining_indices = list(range(len(data)))
+        self.option1 = None
+        self.option2 = None
 
-def display_first_options():
-    total_keys = list(range(len(data)))
-    random_option1 = random.choice(total_keys)
-    total_keys.remove(random_option1)
-    random_option2 = random.choice(total_keys)
-    total_keys.remove(random_option2)
-    return random_option1, random_option2, total_keys
+    def clear_screen(self):
+        os.system("clear")
 
-def play_game(option1, option2):
-    global score
+    def reset_game(self):
+        self.score = 0
+        self.remaining_indices = list(range(len(data)))
+        self.option1, self.option2 = self.select_two_options()
 
-    while True:
-        try:
-            choice = int(input(f"\nWho has more followers:\n1. {data[option1]['name']} or\n2. {data[option2]['name']}\nEnter 1 or 2: "))
-            if choice in [1, 2]:
-                break
-            else:
+    def select_two_options(self):
+        options = random.sample(self.remaining_indices, 2)
+        for opt in options:
+            self.remaining_indices.remove(opt)
+        return options[0], options[1]
+
+    def get_user_choice(self):
+        while True:
+            try:
+                choice = int(input(f"Who has more followers: \n1. {data[self.option1]['name']} or \n2. {data[self.option2]['name']}: "))
+                if choice in [1, 2]:
+                    return choice
+            except ValueError:
                 pass
-        except ValueError:
-            print("Invalid input. Please enter a number (1 or 2).")
+            print("Invalid option. Select either option 1 or 2.")
 
-    if choice == 1:
-        selected = option1
-        other = option2
-    else:
-        selected = option2
-        other = option1
+    def play_round(self):
+        choice = self.get_user_choice()
 
-    print(f"\n{data[selected]['name']} has {data[selected]['follower_count']} followers.")
-    print(f"{data[other]['name']} has {data[other]['follower_count']} followers.")
+        selected = self.option1 if choice == 1 else self.option2
+        other = self.option2 if choice == 1 else self.option1
 
-    if data[selected]['follower_count'] > data[other]['follower_count']:
-        score += 1
-        print("You won!\n")
-        result = "won"
-    elif data[selected]['follower_count'] < data[other]['follower_count']:
-        print("You lost.\n")
-        result = "lost"
-    elif data[selected]['follower_count'] == data[other]['follower_count']:
-        print("It is a tie.\n")
-        result = "tie"
+        selected_followers = data[selected]['follower_count']
+        other_followers = data[other]['follower_count']
 
-    return selected, result
+        print(f"{data[selected]['name']} has {selected_followers} followers.")
+        print(f"{data[other]['name']} has {other_followers} followers.")
 
-def next_round(selected, total_keys):
-    if not total_keys:
-        print("No more comparisons left. You completed the game!")
-        print(f"Your final score is {score}.")
-        return None, None, []
+        if selected_followers > other_followers:
+            self.score += 1
+            print(f"User won. Your current streak is {self.score} rounds.")
+            return True
+        elif selected_followers == other_followers:
+            print("It is a tie.")
+            return True
+        else:
+            print("You lost.")
+            return False
 
-    new_option = random.choice(total_keys)
-    total_keys.remove(new_option)
-    return selected, new_option, total_keys
+    def next_option(self):
+        if not self.remaining_indices:
+            print("You've exhausted all options. No more comparisons left.")
+            return False
 
-# Ask user if he wants to play the game
-print("Welcome to the Higher or Lower game.")
+        new_option = random.choice(self.remaining_indices)
+        self.remaining_indices.remove(new_option)
+        self.option1 = self.option2
+        self.option2 = new_option
+        return True
 
-while True:
-    choice = input("\nDo you want to play? Press 'y' for Yes and 'n' for No: ").lower()
-
-    if choice in ('y', 'yes'):
-        option1, option2, total_keys = display_first_options()
+    def run(self):
+        print("Welcome to the Higher or Lower game.")
 
         while True:
-            selected, result = play_game(option1, option2)
+            choice = input("Do you want to play? (y/n): ").lower()
 
-            if result in ("won", "tie"):
-                option1, option2, total_keys = next_round(selected, total_keys)
-                if option2 is None:
-                    break
-            elif result == "lost":
-                print(f"Your score is {score}.\n")
+            if choice in ('y', 'yes'):
+                self.reset_game()
+
+                while True:
+                    result = self.play_round()
+                    if not result:
+                        print(f"Your final score is {self.score}.")
+                        break
+                    if not self.next_option():
+                        break
+
+            elif choice in ('n', 'no'):
+                print("Thank you for playing the game.")
                 break
+            else:
+                print("Incorrect option. Select again.")
 
-    elif choice in ('n', 'no'):
-        print("Thank you for playing the game.")
-        break
-    else:
-        print("Incorrect option. Please select again.")
+
+if __name__ == "__main__":
+    game = HigherLowerGame()
+    game.run()
