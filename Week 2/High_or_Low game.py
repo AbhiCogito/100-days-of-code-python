@@ -67,7 +67,7 @@ user_option = 0
 used_key = []
 
 while True:
-    #os.system("clear")
+    os.system("clear")
     choice = input(("Do you want to play?. \nPress 'y' for Yes and 'n' for No: "))
 
     if choice in ('y', 'yes'):
