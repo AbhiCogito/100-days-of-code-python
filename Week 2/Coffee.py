@@ -16,7 +16,7 @@ class Menu:
     def find_drink(self, drink_name):
         for x in self.drinks:
             if x.name == drink_name:
-                return Drink
+                return x
         return None
     
 class CoffeeMachine:
@@ -32,10 +32,10 @@ class CoffeeMachine:
     def report(self):
         print(f"Water : {self.resources['water']}")
         print(f"Milk : {self.resources['milk']}")
-        print(f"Coffee : {self.resource['coffee']}")
+        print(f"Coffee : {self.resources['coffee']}")
         print(f"Total money : {self.money}")
 
-    def sufficient_resources(self,drink):
+    def sufficient_resources(self, drink):
         for item in drink.ingredients:
             if drink.ingredients[item] > self.resources.get(item,0):
                 print(f"Insufficient quantity of {item}.")

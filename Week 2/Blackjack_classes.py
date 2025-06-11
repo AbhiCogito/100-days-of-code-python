@@ -31,4 +31,4 @@ class Card:
     def __init__(self):
         pass
 
-    def first_round(self)
+    def first_round(self):
