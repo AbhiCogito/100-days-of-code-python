@@ -1,0 +1,22 @@
+book_data = [
+    {"title": "To Kill a Mockingbird", "author": "Harper Lee", "genre": "Fiction", "year": 1960},
+    {"title": "1984", "author": "George Orwell", "genre": "Dystopian", "year": 1949},
+    {"title": "The Great Gatsby", "author": "F. Scott Fitzgerald", "genre": "Classic", "year": 1925},
+    {"title": "Pride and Prejudice", "author": "Jane Austen", "genre": "Romance", "year": 1813},
+    {"title": "The Hobbit", "author": "J.R.R. Tolkien", "genre": "Fantasy", "year": 1937},
+    {"title": "Moby Dick", "author": "Herman Melville", "genre": "Adventure", "year": 1851},
+    {"title": "The Catcher in the Rye", "author": "J.D. Salinger", "genre": "Coming-of-Age", "year": 1951},
+    {"title": "Brave New World", "author": "Aldous Huxley", "genre": "Science Fiction", "year": 1932},
+    {"title": "Jane Eyre", "author": "Charlotte Brontë", "genre": "Gothic Fiction", "year": 1847},
+    {"title": "The Lord of the Rings", "author": "J.R.R. Tolkien", "genre": "Fantasy", "year": 1954},
+    {"title": "Fahrenheit 451", "author": "Ray Bradbury", "genre": "Dystopian", "year": 1953},
+    {"title": "The Alchemist", "author": "Paulo Coelho", "genre": "Philosophical Fiction", "year": 1988},
+    {"title": "Crime and Punishment", "author": "Fyodor Dostoevsky", "genre": "Psychological Fiction", "year": 1866},
+    {"title": "Wuthering Heights", "author": "Emily Brontë", "genre": "Classic", "year": 1847},
+    {"title": "The Chronicles of Narnia", "author": "C.S. Lewis", "genre": "Fantasy", "year": 1950},
+    {"title": "Dracula", "author": "Bram Stoker", "genre": "Horror", "year": 1897},
+    {"title": "Frankenstein", "author": "Mary Shelley", "genre": "Science Fiction", "year": 1818},
+    {"title": "Little Women", "author": "Louisa May Alcott", "genre": "Historical Fiction", "year": 1868},
+    {"title": "The Picture of Dorian Gray", "author": "Oscar Wilde", "genre": "Philosophical Fiction", "year": 1890},
+    {"title": "Anna Karenina", "author": "Leo Tolstoy", "genre": "Romance", "year": 1877}
+]
