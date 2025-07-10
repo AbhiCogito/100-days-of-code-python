@@ -43,10 +43,6 @@ class Library_setup:
     def __init__(self, my_library):
         self.books = my_library
 
-    def display_books(self):
-        for book in self.books:
-            print (f"The {book.title} book of {book.genre} genre is written by {book.author} in {book.year}.")
-
     def borrow_book(self, book_name, user):
         for book in self.books:
             if book.title.lower() == book_name.lower():
