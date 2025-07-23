@@ -61,7 +61,7 @@ class FinanceManager:
         return expense_by_category
 
     def get_balance(self):
-        return self.total_income() - self.total_expenses()
+        return f"The balance with {self.total_income()} income and {self.total_expenses()} expenses is {self.total_income() - self.total_expenses()}."
     
 
 class Income:
@@ -124,8 +124,10 @@ class Budget:
 
         for category, amount in expense_category_wise.items():
             if category in self.budget:
-                if amount >= self.budget[category]:
+                if amount > self.budget[category]:
                     print(f"Amount spent in {category} is more than the budgeted limit of {self.budget[category]}")
+                elif amount <= self.budget[category]:
+                    print(f"Amount spent in {category} is within the budgeted limit of {self.budget[category]}")
             else:
                 print(f"No budget set for the {category}.")
 
@@ -189,7 +191,9 @@ while True:
                 limit = int(input(f"Enter your budget for {category}: "))
                 user_budget[category] = limit
             budget = Budget(user_budget, fm)
-            print("Budget has been set.")
+            print("Budget has been set. \n")
+            for category, limit in user_budget.items():
+                print(f"  {category}: ₹{limit}")
 
         elif choice == 7:
 
