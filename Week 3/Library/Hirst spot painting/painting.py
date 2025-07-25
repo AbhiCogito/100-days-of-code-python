@@ -8,14 +8,21 @@ color_list = [ (23, 16, 94), (232, 43, 6), (153, 14, 30), (41, 181, 158), (127, 
 t = Turtle()
 turtle.colormode(255)
 t.speed("fastest")
+t.hideturtle()
 
-#t.penup()
-for y in range(9):
-    t.setpos(0 ,y*40)
-    for _ in range(9):
-        t.dot(20, random.choice(color_list))
-        t.penup()
-        t.forward(40)
+def draw_dots(direction):
+    t.setpos(0, 0)
+    t.setheading(direction)
+    for y in range(9):
+        for x in range(9):
+            t.setpos(x * 20 ,y*-40)
+            for _ in range(9):
+                t.dot(20, random.choice(color_list))
+                t.penup()
+                t.forward(40)
+
+for x in range(4):
+    draw_dots(x * 90)
 
 display = Screen()
 display.exitonclick()
