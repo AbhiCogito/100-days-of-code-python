@@ -4,13 +4,29 @@ from Snake import Snake
 from Food import Food
 
 s = Screen()
-s.setup(width= 1000, height= 1000)
+s.setup(width= 1100, height= 1100)
 s.bgcolor("black")
 s.title("Welcome to the Snake Game!")
 s.tracer(0)
 
+writer = Turtle()
+writer.hideturtle()
+writer.penup()
+writer.goto(430, 380)
+writer.color("white")
+
+def update_score():
+    writer.clear()
+    writer.write(f"Score = {score}", align="left", font=("Arial", 14, "bold"))
+
+
 snake = Snake()
 food = Food()
+score = 0
+food.food_random(snake.snake_body)
+
+# Write score at start
+writer.write(f"Score = {score}", align="left", font=("Arial", 14, "bold"))
 
 s.listen()
 s.onkey(snake.up, "Up")
@@ -24,10 +40,24 @@ while game_on:
     s.update()
     time.sleep(0.1)
     snake.start_game()
+    head = snake.snake_body[0]
 
-    if snake.snake_body[0].distance(food) < 20:
-        food.food_random()
+    if head.distance(food) < 20:
+        food.food_random(snake.snake_body)
+        score += 1
+        snake.increase_length(score)
         s.update()
+        update_score()
+
+    if (head.xcor() > 530 or head.xcor() < -530 or
+    head.ycor() > 400 or head.ycor() < -400):
+        game_on = False
+
+    if snake.collission_with_self():
+        game_on = False
+
+
+
 
     
     

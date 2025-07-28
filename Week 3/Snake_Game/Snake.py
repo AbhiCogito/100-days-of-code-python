@@ -1,7 +1,7 @@
 from turtle import Turtle
 
 X_START_COORDINATE = 20
-MOVE_DISTANCE = 15
+MOVE_DISTANCE = 20
 
 class Snake:
 
@@ -29,6 +29,27 @@ class Snake:
             y_move = self.snake_body[body_num-1].ycor()
             self.snake_body[body_num].goto(x_move, y_move)
         self.snake_body[0].forward(MOVE_DISTANCE)
+
+    def increase_length(self, score):
+        x_cor = self.snake_body[-1].xcor()
+        y_cor = self.snake_body[-1].ycor()
+        
+        t = Turtle("circle")
+        t.color("white")
+        t.penup()
+        t.goto(x_cor, y_cor)
+        self.snake_body.append(t)
+
+    def collission_with_self(self):
+        for body_num in range(len(self.snake_body)-1, 0, -1):
+            x_cor = self.snake_body[body_num].xcor()
+            y_cor = self.snake_body[body_num].ycor()
+
+            if self.snake_body[0].distance(x_cor,y_cor) < 10:
+                return True
+        return False    
+        
+
 
     def up(self):
         if self.snake_body[0].heading() != 270:
