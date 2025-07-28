@@ -51,15 +51,12 @@ while game_on:
 
     if (head.xcor() > 530 or head.xcor() < -530 or
     head.ycor() > 400 or head.ycor() < -400):
+        writer.goto(0, 0)
+        writer.write(f"Game Over!", align="center", font=("Arial", 14, "bold"))
         game_on = False
 
     if snake.collission_with_self():
         game_on = False
 
-
-
-
-    
-    
 
 s.exitonclick()
