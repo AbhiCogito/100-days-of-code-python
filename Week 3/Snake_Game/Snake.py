@@ -41,7 +41,7 @@ class Snake:
         self.snake_body.append(t)
 
     def collission_with_self(self):
-        for body_num in range(len(self.snake_body)-1, 0, -1):
+        for body_num in range(1, len(self.snake_body)):
             x_cor = self.snake_body[body_num].xcor()
             y_cor = self.snake_body[body_num].ycor()
 

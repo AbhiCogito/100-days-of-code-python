@@ -56,6 +56,8 @@ while game_on:
         game_on = False
 
     if snake.collission_with_self():
+        writer.goto(0, 0)
+        writer.write(f"Game Over!", align="center", font=("Arial", 14, "bold"))
         game_on = False
 
 
