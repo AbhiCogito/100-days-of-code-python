@@ -9,11 +9,11 @@ df = pd.DataFrame(pd.read_csv(file_path))
 db = {column["letter"]:column["code"] for index, column in df.iterrows()}
 print(db.values())
 
-word = list(input("Enter the word for phonics conversion: ").upper())
+word = input("Enter the word for phonics conversion: ").upper()
 print(word)
 
 
-result = [db[w] for w in word if w in db]
+result = [db[w] for w in word]
 print(result)
 
 
