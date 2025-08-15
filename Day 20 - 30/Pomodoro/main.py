@@ -13,7 +13,7 @@ GREEN = "#9bdeac"
 YELLOW = "#f7f5dd"
 FONT_NAME = "calibri"
 BG_COLOR = "yellow"
-WORK_MIN = 1
+WORK_MIN = 25
 SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 REPS = 0
@@ -58,6 +58,7 @@ def countdown(count):
         count_sec = f"0{count_sec}"
 
     c.itemconfig(timer_text, text=f"{count_minutes} : {count_sec}")
+    
     if count >0:
         global TIMER
         TIMER = root.after(1000, countdown, count - 1)
@@ -73,6 +74,7 @@ root = tk.Tk()
 root.title("PoMoDoRo Timer!!")
 root.config(padx=10, pady=10, bg="cyan")
 
+#Using a Canvas so that we can use it to display the image
 c = tk.Canvas(root, width=220, height=240,bg=YELLOW, highlightthickness=0)
 tomato = tk.PhotoImage(file=file_path) #Saving the image
 c.create_image(110,120,image=tomato)   #Using the image
