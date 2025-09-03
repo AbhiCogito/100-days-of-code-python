@@ -12,8 +12,8 @@ root.title("Password Manager")
 root.config(bg="white")
 root.geometry("700x700")
 
-#Creating the canvas inside which all the objects will be placed
-c = tk.Canvas(root, width=220, height=240, highlightthickness=0)
+#Creating the canvas within which all the objects will be placed
+c = tk.Canvas(root, width=220, height=240, highlightthickness=1, bg="cyan")
 logo = tk.PhotoImage(file=file_path) #Loading the image
 c.create_image(110,120,image=logo)   #Using the image in canvas
 c.grid(column=1, row=0, pady= 30) #Placing the canvas itself using the grid method
@@ -29,8 +29,9 @@ for i in range(6):
 
 # Dropdown (Combobox)
 categories = ["Website", "Finance"]
-category_var = tk.StringVar()  # stores the selected value
-dropdown = ttk.Combobox(root, textvariable=category_var, values=categories, state="readonly")
+category_var = tk.StringVar()  #Creating a string variable within tkinter to store the selected dropdown option
+#Dropdown takes values from <categories> and the selected option is stored in <category_var>
+dropdown = ttk.Combobox(root, values=categories, textvariable=category_var, state="readonly")
 dropdown.grid(column=1, row=2, padx=10, pady=10)
 
 #Adding a horizontal slider for password length
@@ -61,7 +62,7 @@ tk.Entry(composition_frame, width=5).grid(row=1, column=2, padx=5)
 
 # ---- Email/Username ----
 tk.Label(root, text="Email:").grid(row=5, column=0, padx=5, pady=5, sticky="e") #stick to "east"
-email_var = tk.StringVar() #Creates a string variable in tkinter
+email_var = tk.StringVar() #Tkinter string variable to store user's input
 tk.Entry(root, textvariable=email_var).grid(row=5, column=1, padx=5, pady=5, sticky="w") #stick to "west"
 
 # ---- Password & Generate ----
@@ -82,7 +83,7 @@ def generate_password():
         random.choice(string.punctuation),
     ]
 
-    # Fill remaining length
+    # Fill remaining length by selecting k items
     new_password_list += random.choices(all_chars, k=length - 4)
 
     # Shuffle
@@ -97,7 +98,7 @@ def store_data():
 
     with open(csv_path, 'a', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow([category,email, password])
+        writer.writerow([category, email, password])
         email_var.set("")
         password_var.set("")
         category_var.set("")
