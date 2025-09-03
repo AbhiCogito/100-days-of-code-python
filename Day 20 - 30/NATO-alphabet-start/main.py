@@ -7,14 +7,17 @@ os.system("clear")
 df = pd.DataFrame(pd.read_csv(file_path))
 
 db = {column["letter"]:column["code"] for index, column in df.iterrows()}
-print(db.values())
+# print(db.values())
 
 word = input("Enter the word for phonics conversion: ").upper()
-print(word)
+# print(word)
 
-
-result = [db[w] for w in word]
-print(result)
+try:
+    result = [db[w] for w in word]
+except KeyError:
+    print("Only alphabets.")
+else:
+    print(result)
 
 
 # r = []
