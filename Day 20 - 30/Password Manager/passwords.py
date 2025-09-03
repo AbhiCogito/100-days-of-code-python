@@ -1,6 +1,6 @@
 import os, csv, random, string
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, messagebox
 
 file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "logo.png")
 csv_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "credentials.csv")
@@ -96,12 +96,18 @@ def store_data():
     password = password_var.get()
     category = category_var.get()
 
-    with open(csv_path, 'a', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow([category, email, password])
-        email_var.set("")
-        password_var.set("")
-        category_var.set("")
+    if email == "" or password == "" or category == "":
+        messagebox.showinfo(message="Category, Email & Password can't be empty.")
+    else:
+        save = messagebox.askokcancel(title=category, message=f"Confirm for saving: \n \
+                                                                Email: {email} \n Password: {password}")
+        if save:
+            with open(csv_path, 'a', newline='') as file:
+                writer = csv.writer(file)
+                writer.writerow([category, email, password])
+                email_var.set("")
+                password_var.set("")
+                category_var.set("")
 
 generate_btn = tk.Button(root, text="Generate", command=generate_password)
 generate_btn.grid(row=6, column=2, padx=5, pady=5)
