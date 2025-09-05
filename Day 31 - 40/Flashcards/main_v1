@@ -1,0 +1,37 @@
+import os, csv,random
+import tkinter as tk
+
+BACKGROUND_COLOR = "#B1DDC6"
+
+game_on = True
+os.system("clear")
+base_dir = os.path.dirname(os.path.abspath(__file__))
+
+data = os.path.join(base_dir, "data", "french_words.csv")
+image_card_back = os.path.join(base_dir, "images", "card_back.png")
+image_card_front = os.path.join(base_dir, "images", "card_front.png")
+image_right = os.path.join(base_dir, "images", "right.png")
+image_wrong = os.path.join(base_dir, "images", "wrong.png")
+
+#-----------Main Window------------#
+root = tk.Tk()
+root.title("French Words Memory Cards")
+root.geometry("830x550")
+root.config(bg=BACKGROUND_COLOR)
+
+#-----------Creating the canvas-------------#
+canvas = tk.Canvas(root, height=526, width=800, bg=BACKGROUND_COLOR)
+
+#Loading the images
+card_back = tk.PhotoImage(file=image_card_back)
+card_front = tk.PhotoImage(file=image_card_front)
+right = tk.PhotoImage(file=image_right)
+wrong = tk.PhotoImage(file=image_wrong)
+
+#Placing the canvas using the grid method
+canvas.grid(column=0, row=0, padx=10, pady=10)
+
+#--Loading words-list into a local variable--#
+with open(data, "r") as file:
+    reader = csv.DictReader(file)
+    word_pairs = list(reader) 
