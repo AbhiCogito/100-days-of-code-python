@@ -49,8 +49,13 @@ def display_eng_word():
     canvas.itemconfig(card_image, image=card_back)
     canvas.itemconfig(french_word, text= f"{df.iloc[rand_var]['English']}")
 
-right_button = tk.Button(root, image=right, command=display_french_word)
-wrong_button = tk.Button(root, image=wrong, command=display_eng_word)
+def known_word():
+    global df
+    df = df.drop(rand_var).reset_index(drop=True)
+
+
+right_button = tk.Button(root, image=right, command=known_word)
+wrong_button = tk.Button(root, image=wrong, command=display_french_word)
 right_button.grid(column=1, row=1)
 wrong_button.grid(column=0, row=1)
 
