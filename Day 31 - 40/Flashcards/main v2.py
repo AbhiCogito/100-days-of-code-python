@@ -45,7 +45,7 @@ try:
     df = pd.read_csv(words_to_learn_file)
 except FileNotFoundError:
     df = pd.read_csv(data)
-    df.to_csv(words_to_learn_file, index=False)
+    df.to_csv(words_to_learn_file, index=False) #Creating a new csv file to keep track of learning
     print("Creating a new Words 2 Learn file")
 
 def correct_word():
