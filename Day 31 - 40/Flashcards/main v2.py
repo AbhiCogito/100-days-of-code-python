@@ -40,21 +40,18 @@ card_word = canvas.create_text(400, 220, text="", font=("Times New Roman", 72, "
 
 words_to_learn_file = os.path.join(base_dir, "data", "words_to_learn.csv")
 
-
 #--------Loading the words file into a data frams----------#
 try:
-    df = pd.read_csv('data/words_to_learn.csv')
+    df = pd.read_csv(words_to_learn_file)
 except FileNotFoundError:
-    with open(data, "r") as file:
-        df = pd.read_csv(file)
-    with open(words_to_learn_file, 'w') as new_file:
-        print("Creating a new Words 2 Learn file")
-        pass
+    df = pd.read_csv(data)
+    df.to_csv(words_to_learn_file, index=False)
+    print("Creating a new Words 2 Learn file")
 
 def correct_word():
     global rand_index, df
     df = df.drop(rand_index)
-    df.reset_index(drop=True)
+    df = df.reset_index(drop=True)
     df.to_csv(words_to_learn_file, index=False) #Saving dataframe to a csv whenever a word is marked as known
     print(f"Length of df: {len(df)}")
     display_french_word()
@@ -69,9 +66,10 @@ def display_english_word():
     canvas.create_window(550, 400, window=right_button)
     canvas.create_window(250, 400, window=wrong_button)
 
+
 def display_french_word():
     length = len(df)
-    global rand_index, rand_index_list, known_word_list, game_on
+    global rand_index, rand_index_list
 
     if length == 0:
         print("Congrats! All the words have been learned.")
@@ -86,7 +84,6 @@ def display_french_word():
         canvas.itemconfig(card_title, text="French Word")
         canvas.itemconfig(card_word, text = f"{df.iloc[rand_index]['French']}")
         canvas.after(2000, display_english_word)
-
 
 display_french_word()
 
