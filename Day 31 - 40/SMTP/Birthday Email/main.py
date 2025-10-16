@@ -38,6 +38,7 @@ for i in range(len(dates)):
         month = int(row_data[3].strip())
         day = int(row_data[4].strip())
         name = row_data[0].strip()
+        email = row_data[1].strip()
     except Exception:
         continue
 
