@@ -23,7 +23,7 @@ with open(data, 'r') as file:
 today = dt.datetime.now()
 weekday = today.weekday()
 
-if weekday == 2:
+if weekday == 0:
     email_quote(random.choice(quotes))
 
 
