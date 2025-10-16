@@ -1,10 +1,12 @@
 import datetime as dt
 import smtplib
 
+#Email addresses
 my_email = "abhineet.exam@gmail.com"
-my_password = "daicakkpbexfnaji"
+my_password = ""
 send_email = ['gk4ias@gmail.com', 'hcl.priya23@gmail.com', 'singh.abhineet@gmail.com']
 
+#Working with dates
 sophie_bdy = dt.date(2020, 10, 25)
 milestone = [i for i in range (100, 50000, 100)]
 today = dt.datetime.now()
@@ -25,6 +27,7 @@ def birthday_email(days):
                         f"Be a responsible parent please. Her future is dependent on you.")
     connection.close()
 
+#Sending the email one day before the milestone occurs
 if (diff_days + 1) in milestone:
     birthday_email(diff_days)
 
