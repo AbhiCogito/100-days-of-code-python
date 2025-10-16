@@ -17,13 +17,13 @@ today = dt.datetime.now()
 today_month = today.month
 today_date = today.day
 
-def birthday_email(message):
+def birthday_email(name, message):
     connection = smtplib.SMTP('smtp.gmail.com', 587)
     connection.ehlo()
     connection.starttls()
     connection.login(user=my_email, password=my_password)
     connection.sendmail(from_addr=my_email, to_addrs="gk4ias@gmail.com", 
-                        msg=f"Subject: Python_email Testing python using VSCode \n\n {message}")
+                        msg=f"Subject: Hey {name}, Happy Birthday!! \n\n {message}")
     connection.close()
 
 with open(birthdays, 'r') as file:
@@ -49,4 +49,4 @@ for i in range(len(dates)):
 
         message = message.replace('[NAME]', name)
 
-        birthday_email(message)
+        birthday_email(name, message)
