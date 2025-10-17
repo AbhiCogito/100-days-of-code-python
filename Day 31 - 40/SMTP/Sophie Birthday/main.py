@@ -1,9 +1,10 @@
 import datetime as dt
-import smtplib
+import smtplib, os
+from dotenv import load_dotenv
 
 #Email addresses
-my_email = "abhineet.exam@gmail.com"
-my_password = ""
+my_email = os.getenv("EMAIL_USER", "")
+my_password = os.getenv("EMAIL_PASS", "")
 send_email = ['gk4ias@gmail.com', 'hcl.priya23@gmail.com', 'singh.abhineet@gmail.com']
 
 #Working with dates

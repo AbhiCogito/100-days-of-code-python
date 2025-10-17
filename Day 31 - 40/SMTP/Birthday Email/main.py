@@ -1,5 +1,6 @@
 import smtplib, random, os
 import datetime as dt
+from dotenv import load_dotenv
 
 os.system("clear")
 base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -10,8 +11,8 @@ letter_3 = os.path.join(base_dir, "letter_templates", "letter_3.txt")
 
 letter = [letter_1, letter_2, letter_3]
 
-my_email = "abhineet.exam@gmail.com"
-my_password = "daicakkpbexfnaji"
+my_email = os.getenv("EMAIL_USER", "")
+my_password = os.getenv("EMAIL_PASS", "")
 
 today = dt.datetime.now()
 today_month = today.month
