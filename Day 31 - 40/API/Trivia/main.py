@@ -36,4 +36,3 @@ kanye_button = tk.Button(image=kanye_image, highlightthickness=0, command=get_qu
 kanye_button.grid(row=1, column=0)
 
 root.mainloop()
-
