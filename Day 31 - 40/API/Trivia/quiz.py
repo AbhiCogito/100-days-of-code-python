@@ -9,7 +9,8 @@ question_bank = []
 for i in range(len(question_data)):
     question_text = question_data[i]["question"]
     question_answer = question_data[i]["answer"]
-    question_new = Question(question_text, question_answer)
+    question_category = question_data[i]["category"]
+    question_new = Question(question_category, question_text, question_answer)
     question_bank.append(question_new)
 
 random.shuffle(question_bank)
