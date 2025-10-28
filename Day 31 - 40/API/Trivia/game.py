@@ -1,6 +1,6 @@
 import tkinter as tk
 import requests as rq
-import os
+import os, html
 
 API = "https://opentdb.com/api.php?amount=10&type=boolean"
 score = 0
@@ -10,8 +10,8 @@ os.system("clear")
 
 root = tk.Tk()
 
-base_dir = os.path.dirname(os.path.abspath(__file__))
 #---------- Locating the images -------------------#
+base_dir = os.path.dirname(os.path.abspath(__file__))
 true = os.path.join(base_dir, "true.png")
 false = os.path.join(base_dir, "false.png")
 background = os.path.join(base_dir, "background.png")
@@ -22,7 +22,6 @@ true_image = tk.PhotoImage(file=true)
 false_image = tk.PhotoImage(file=false)
 
 #----------- Fetching questions via API -----------#
-
 question_data = []
 response = rq.get(url=API)
 response.raise_for_status()
@@ -30,9 +29,11 @@ data = response.json()
 results = data["results"]
 
 for item in results:
-    question = item["question"]
+    q = item["question"]
+    question = html.unescape(q)
     answer = item["correct_answer"]
-    category = item["category"]
+    c = item["category"]
+    category = html.unescape(c)
 
     question_data.append({
         "question": question,
@@ -49,8 +50,8 @@ def display_question():
             category = question_data[i]["category"]
             canvas.itemconfig(category_text, text=category)
             canvas.itemconfig(question_text, text=question)
-            canvas.itemconfig(score_text, text=score)
-            return answer
+            canvas.itemconfig(score_text, text=f"Score: {score}")
+            canvas.itemconfig(answer_text, text="")
         else:
             canvas.itemconfig(category_text, text="")
             canvas.itemconfig(question_text, text=f"Quiz Finished!\nScore: {score}/10")
@@ -60,18 +61,19 @@ def display_question():
 def play_game(user_choice = None):
     global i, score
     
-    answer = display_question()
-
-    if user_choice is not None:
+    if i < len(question_data):
+        answer = question_data[i]["answer"]
         if user_choice == answer:
             score+=1
-            canvas.itemconfig(score_text, text=score)
-            # canvas.itemconfig(answer_text, text=answer)
-            # root.after(500)
-
-        i+=1
-
-
+            canvas.itemconfig(score_text, text=f"Score: {score}")
+            canvas.itemconfig(answer_text, text=answer)
+            i+=1
+            root.after(1000, display_question)
+        else:
+            canvas.itemconfig(score_text, text=f"Score: {score}")
+            canvas.itemconfig(answer_text, text=answer)
+            i+=1
+            root.after(1000, display_question)
 
 root.title("Quiz Game")
 root.geometry("350x600")
@@ -82,7 +84,7 @@ canvas.create_image(150, 207, image=background_image)
 category_text = canvas.create_text(160, 50, text="", width=250, font=("Arial", 30, "italic"), fill="black")
 question_text = canvas.create_text(150, 180, text="", width=250, font=("Arial", 22, "italic"), fill="white")
 score_text = canvas.create_text(150, 350, text=f"Score: {score}", width=250, font=("Arial", 22, "italic"), fill="black")
-# answer_text = canvas.create_text(150, 300, text=f"Answer: {answer}", width=250, font=("Arial", 22, "italic"), fill="black")
+answer_text = canvas.create_text(150, 300, text="", width=250, font=("Arial", 22, "italic"), fill="black")
 canvas.grid(row=0, column=0)
 
 true_button = tk.Button(image=true_image, highlightthickness=0, command=lambda: play_game("True"))
@@ -90,6 +92,6 @@ true_button.grid(row=1, column=0)
 false_button = tk.Button(image=false_image, highlightthickness=0, command=lambda: play_game("False"))
 false_button.grid(row=1, column=1)
 
-play_game()
+display_question()
 
 root.mainloop()
