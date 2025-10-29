@@ -27,7 +27,7 @@ UPDATE_GRAPH = {
     "quantity": "18"
 }
 
-response = rq.post(url=f"{GRAPH_ENDPOINT}/{GRAPH_ID}", headers=HEADERS, json=UPDATE_GRAPH)
-print(response.text)
-
+# response = rq.post(url=f"{GRAPH_ENDPOINT}/{GRAPH_ID}", headers=HEADERS, json=UPDATE_GRAPH)
+# print(response.text)
+print(f"{GRAPH_ENDPOINT}/{GRAPH_ID}")
 
