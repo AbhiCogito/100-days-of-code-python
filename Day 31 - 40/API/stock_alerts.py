@@ -11,8 +11,7 @@ from_date = (today - timedelta(10)).strftime('%Y-%m-%d')
 to_date = today.strftime('%Y-%m-%d')
 
 
-# STOCK = ['AAPL', 'MSFT', 'NVDA', 'TSLA', 'AMZN']
-STOCK = ['TSLA']
+STOCK = ['AAPL', 'MSFT', 'NVDA', 'TSLA', 'AMZN']
 COMPANY_NAME = "Tesla Inc"
 DIGEST = ""
 STOCK_ENDPOINT = "https://www.alphavantage.co/query"
