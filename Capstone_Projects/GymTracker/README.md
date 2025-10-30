@@ -195,20 +195,10 @@ email-validator==2.2.0
 ## 💡 Author
 
 **Abhineet**
-📧 [[YourEmail@example.com](mailto:YourEmail@example.com)]
-🌐 [LinkedIn / GitHub / Medium]
-
-> “Sweat, code, and data — that’s how progress is tracked.”
+📧 [[abhineet.singh.2017@gmail.com](mailto:abhineet.singh.2017@gmail.com)]
+🌐 [[LinkedIn](https://www.linkedin.com/in/singhabhineet/) / [GitHub](https://github.com/AbhiCogito)]
 
 ```
 ```
 
 ---
-
-✅ **In short:**
-
-* You’ll **see badges after pushing to GitHub** (they won’t render inside VS Code).
-* ASCII banner looks perfect on GitHub and terminal previews.
-* Requirements are complete — just paste into `requirements.txt` and run `pip install -r requirements.txt`.
-
-Would you like me to also include a **sample `.env` template** and a **minimal `main.py` skeleton** that connects all modules together (so your repo is runnable right away)?
