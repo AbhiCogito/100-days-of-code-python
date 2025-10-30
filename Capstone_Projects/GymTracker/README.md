@@ -1,19 +1,3 @@
-Excellent 👏 yes — that’s normal!
-
-Those badges (the `<img src="https://img.shields.io/...">` ones) **don’t render inside VS Code’s preview** because the built-in Markdown renderer sometimes blocks external network requests.
-✅ **Once you push to GitHub**, they will display perfectly in your repository’s README.
-
-So don’t worry — GitHub supports `shields.io` badges natively and will render them exactly as you see in professional open-source repos.
-
----
-
-Here’s everything you asked for:
-
----
-
-### 🧱 **`README.md` (with ASCII banner + working badges)**
-
-Paste this entire block into your `README.md` in VS Code ⬇️
 
 ```markdown
 ```
