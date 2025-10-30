@@ -1,0 +1,34 @@
+# === Core Libraries ===
+python-dotenv==1.0.1           # For environment variable management (.env)
+requests==2.32.3               # For calling HEVY API and other HTTP requests
+pandas==2.2.2                  # For data manipulation and analysis
+matplotlib==3.9.2              # For charts and visualizations
+plotly==5.24.0                 # For interactive visualizations
+
+# === Google Sheets Integration ===
+gspread==6.1.2                 # For reading/writing Google Sheets
+google-auth==2.34.0            # For authenticating Google API access
+google-auth-oauthlib==1.2.1    # For OAuth 2.0 credentials
+
+# === Email Automation ===
+secure-smtplib==0.1.1          # For sending emails securely
+yagmail==0.15.293              # Optional: simplified Gmail API-based email sending
+
+# === LLM Integration ===
+openai==1.52.0                 # For OpenAI or compatible free-tier API
+google-generativeai==0.5.4     # For Gemini API integration
+deepseek==0.1.3                # If you use DeepSeek API
+
+# === Utility ===
+tqdm==4.66.5                   # For progress bars
+rich==13.8.0                   # For colorful console outputs
+
+# === Optional (for testing, local server, etc.) ===
+jupyterlab==4.2.5              # For notebooks and testing
+
+🧠 Notes:
+You don’t need all three LLM clients (openai, google-generativeai, deepseek) — include only what you’ll actually use.
+If you’re using Gmail API instead of smtplib, replace the email section with:
+google-api-python-client==2.151.0
+Once you save this file, install all dependencies via:
+pip install -r requirements.txt
