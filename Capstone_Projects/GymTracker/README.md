@@ -68,6 +68,9 @@ ai-fitness-insights/
 │   ├── llm_summary.py
 │   ├── email_report.py
 │   ├── main.py
+│   ├── helpers/
+│   │   ├── clean_hevy_data.py
+│   │   └── save_to_gsheets.py
 ├── visuals/
 │   ├── volume_trend.png
 │   ├── focus_piechart.png

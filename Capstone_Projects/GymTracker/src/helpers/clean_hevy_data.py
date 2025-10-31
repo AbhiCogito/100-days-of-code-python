@@ -1,4 +1,4 @@
-import json, os, requests
+import json, os
 import pandas as pd
 from dotenv import load_dotenv
 
@@ -56,13 +56,13 @@ df = df[['Date','Title','Exercise', 'Duration', 'Weights (kg)','Reps','Distance 
 df.to_json(clean_file, orient='records', indent=2)
 
 
+print(df.head())
 
 
 
 
 
-
-
+"""
 
 def refresh_sheet(df):
     # Step 1: Delete existing rows
@@ -104,3 +104,5 @@ def refresh_sheet(df):
 
 # refresh_sheet(df)
 # print("GET_SHEETY =", GET_SHEETY)
+
+"""
