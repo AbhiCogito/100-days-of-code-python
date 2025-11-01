@@ -174,7 +174,9 @@ These deeper analyses help you spot patterns, imbalances, and efficiency issues.
 flowchart LR
 A[HEVY API] --> B[Google Sheets]
 A --> C[Python Analysis Scripts]
+C --> B[Google Sheets]
 C --> D[LLM Summary Generator]
+D --> B[Google Sheets]
 D --> E[Email Composer]
 E --> F[Weekly Report to Inbox]
 ```
