@@ -86,18 +86,30 @@ ai-fitness-insights/
 
 ## 🧮 Dataset Schema
 
-| Field           | Description                   | Example           |
-| --------------- | ----------------------------- | ----------------- |
-| `date`          | Date of workout               | 2025-10-28        |
-| `exercise_name` | Name of exercise              | Bench Press       |
-| `muscle_group`  | Targeted muscle group         | Chest             |
-| `sets`          | Total sets                    | 4                 |
-| `reps`          | Average reps per set          | 10                |
-| `weight`        | Average weight used           | 60                |
-| `volume`        | `sets * reps * weight`        | 2400              |
-| `duration_min`  | Workout duration              | 75                |
-| `notes`         | Custom notes or PR indicators | Hit new PR today! |
+| Field      | Description                                       | Example             |
+| ---------- | ------------------------------------------------- | ------------------- |
+| `date`     | Date of the workout (YYYY-MM-DD)                  | 2025-10-30          |
+| `title`    | Name or title of the workout session              | Upper Body Strength |
+| `exercise` | Exercise performed in this set                    | Bench Press         |
+| `duration` | Duration of the workout or session (in minutes)   | 60.5                |
+| `weight`   | Weight used in this set (kg)                      | 55.0                |
+| `reps`     | Number of repetitions in this set                 | 10                  |
+| `distance` | Distance covered (if applicable, in meters or km) | 0.0                 |
+| `id`       | Unique set identifier from HEVY API               | set_abc123          |
 
+---
+Workout Session (title, date, duration)
+│
+├── Exercise 1 (e.g., Bench Press)
+│     ├── Set 1 → { weight, reps, distance, id }
+│     ├── Set 2 → { weight, reps, distance, id }
+│     └── Set 3 → ...
+│
+├── Exercise 2 (e.g., Pull Ups)
+│     ├── Set 1 → { weight, reps, id }
+│     └── Set 2 → ...
+│
+└── ...
 ---
 
 ## ⚙️ How It Works
