@@ -5,7 +5,7 @@ import numpy as np
 os.system("clear")
 
 base_dir = os.path.dirname(os.path.abspath(__file__))
-project_root = os.path.abspath(os.path.join(base_dir, os.pardir))
+project_root = os.path.abspath(os.path.join(base_dir, os.pardir, os.pardir))
 source_file = os.path.abspath(os.path.join(project_root, "data", "hevy_data_clean.json"))
 
 #Defines how many results per query is needed. Say 3 or 5 days per month.
@@ -345,11 +345,66 @@ class ProgressAnalyzer:
         df_sorted = df_summary.sort_values(by='Month', ascending=False)
 
         return df_sorted
-    
-    def streaks_and_rests(self):
 
+    def streaks_and_gaps(self):
+        # Convert and sort unique workout dates
+        dates = sorted(pd.to_datetime(self.df['Date'].unique()))
+        
+        streaks = []
+        gaps = []
+        current_streak = [dates[0]]
+
+        for i in range(1, len(dates)):
+            delta = (dates[i] - dates[i - 1]).days
+
+            if delta == 1:
+                current_streak.append(dates[i])
+            elif delta == 2:
+                if len(current_streak) >= 5:
+                    current_streak.append(dates[i])
+                else:
+                    if len(current_streak) >= 2:
+                        streaks.append(current_streak)
+                    current_streak = [dates[i]]
+            else:
+                if len(current_streak) >= 2:
+                    streaks.append(current_streak)
+                gaps.append((dates[i - 1], dates[i]))
+                current_streak = [dates[i]]
+
+        if len(current_streak) >= 2:
+            streaks.append(current_streak)
+
+        # Format streaks into a DataFrame
+        streak_rows = []
+        for s in streaks:
+            start = s[0]
+            end = s[-1]
+            streak_rows.append({
+                'Streak (days)': len(s),
+                'Month(Start)': start.month,
+                'Month(End)': end.month,
+                'Year': start.year,
+                'Details': [d.strftime('%d-%b-%Y') for d in s]
+            })
+        df_streaks = pd.DataFrame(streak_rows)
+
+        # Format gaps into a DataFrame
+        gap_rows = []
+        for g in sorted(gaps, key=lambda x: (x[1] - x[0]).days, reverse=True):
+            start, end = g
+            gap_days = (end - start).days
+            gap_rows.append({
+                'Gap (days)': gap_days,
+                'Month(Start)': start.month,
+                'Month(End)': end.month,
+                'Year': start.year,
+                'Details': f"{start.strftime('%d-%b-%Y')} to {end.strftime('%d-%b-%Y')}"
+            })
+        df_gaps = pd.DataFrame(gap_rows)
+
+        return df_streaks, df_gaps
 
 analyzer = ProgressAnalyzer(source_file)
-result = analyzer.exercise_monthly_variety()
-# result = analyzer.top_day_in_month(10)
+result = analyzer.streaks_and_gaps()
 print(result)
