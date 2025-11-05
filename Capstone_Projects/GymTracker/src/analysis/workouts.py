@@ -94,7 +94,7 @@ class WorkoutAnalyzer:
 
     def avg_workout_duration(self):
         return(
-            self.df.groupby('id')['Duration']
+            self.df.groupby('Date')['Duration'] #Grouping can be by <Date> or <id>
             .mean()
             .reset_index()
             .rename(columns={'Duration': 'Duration (min)'})
