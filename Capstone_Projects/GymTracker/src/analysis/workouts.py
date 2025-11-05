@@ -1,11 +1,13 @@
 import os
 import json
 import pandas as pd
-import numpy as np
 
 # Defines how many results per query is needed. Say 3 or 5 days per month.
 RESULTS_SIZE = 3
 
+base_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.abspath(os.path.join(base_dir, os.pardir, os.pardir))
+DEFAULT_SOURCE_FILE =  os.path.abspath(os.path.join(project_root, "data/hevy_data_clean.json"))
 
 def load_workout_data(source_file):
     with open(source_file, 'r') as f:
@@ -24,6 +26,9 @@ def load_workout_data(source_file):
 
 class WorkoutAnalyzer:
     def __init__(self, source_file):
+        if source_file is None:
+            source_file = DEFAULT_SOURCE_FILE
+
         self.df = load_workout_data(source_file)
 
     def vol_per_title(self):
@@ -64,7 +69,7 @@ class WorkoutAnalyzer:
     
     def total_weight_reps_per_day(self):
         return(
-            self.df.groupby('id')[['Total Vol', 'Reps']]
+            self.df.groupby('Date')[['Total Vol', 'Reps']] #Grouping can be by <Date> or <id>
             .sum()
             .reset_index()
         )
@@ -208,3 +213,4 @@ class WorkoutAnalyzer:
         data_row = data_row.merge(duration_lookup, on=['Date', 'Title'], how='left')
 
         return data_row[['Month', 'Week', 'Date', 'Title', 'Duration', 'Total Vol']]
+    

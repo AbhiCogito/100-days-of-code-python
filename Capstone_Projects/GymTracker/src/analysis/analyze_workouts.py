@@ -1,6 +1,5 @@
 import os, json
 import pandas as pd
-import numpy as np
 
 os.system("clear")
 
