@@ -1,15 +1,15 @@
-import requests
-import datetime
+import requests, sys, os
 from dotenv import load_dotenv
-import sys, os
+from analysis.summary import progress_data
+
 
 load_dotenv()
 os.system("clear")
+
 GROQ_API = os.getenv("GROQ_LLM_API")
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-print(GROQ_API)
 
-from analysis.summary import progress_data
+
 
 MAX_LENGTH = 5000  
 short_progress_data = str(progress_data)[:MAX_LENGTH]
