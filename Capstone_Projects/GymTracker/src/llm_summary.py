@@ -36,10 +36,10 @@ if response.status_code == 200:
     #Most LLMs return a JSON which contains <choices> dictionary. Its presence means response is successful.
     if "choices" in response_data:
         # print(json.dumps(response_data, indent=2)) #To check for tokwn usage
-        print(response_data["choices"][0]["message"]["content"]) #To print only the text output from the model
+        llm_response = response_data["choices"][0]["message"]["content"] #To print only the text output from the model
     else:
         print("No 'choices' key found in the response. Here's the full response:")
         print(response_data)
 else:
     print(f"Error: {response.status_code}")
-    print(response_data)
+    llm_response = response_data
