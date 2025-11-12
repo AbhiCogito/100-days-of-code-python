@@ -1,10 +1,12 @@
 import pandas as pd
-from .workouts import load_workout_data
+from .workouts import load_workout_data, DEFAULT_SOURCE_FILE
 
 
 class ProgressAnalyzer:
 
     def __init__(self, source_file):
+        if source_file is None:
+            source_file = DEFAULT_SOURCE_FILE
         self.df = load_workout_data(source_file)
 
     def exercise_weekly_progress(self):
