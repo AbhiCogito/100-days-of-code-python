@@ -1,6 +1,6 @@
 import pandas as pd
 import datetime, os
-from analysis.workouts import WorkoutAnalyzer
+from workouts import WorkoutAnalyzer
 os.system("clear")
 
 data = {}
