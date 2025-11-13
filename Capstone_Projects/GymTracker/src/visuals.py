@@ -8,7 +8,8 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 # from analysis.summary import progress_data
 from analysis.workouts import WorkoutAnalyzer
 from analysis.progress import ProgressAnalyzer
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt # Same as <from matplotlib import pyplot as plt>
+import numpy as np
 
 # Now use the analyzers
 wa = WorkoutAnalyzer(None)
@@ -33,6 +34,8 @@ class workouts_charts:
         ax.set_ylabel('Total volume in kg')
         ax.set_title(f'Total vol for top {items} exercises')
 
+        return fig
+
     def vol_per_title_chart(self, items=5):
 
         df = self.wa.vol_per_title().head(items).copy()
@@ -45,6 +48,7 @@ class workouts_charts:
         ax.set_title(f'Total vol for top {items} days')
         plt.setp(ax.get_xticklabels(),rotation=45, ha='right')
         plt.show()
+        
         return fig
 
     def avg_wt_per_rep_per_ex_chart(self, items=5):
@@ -58,6 +62,7 @@ class workouts_charts:
         ax.set_title(f'Total vol for top {items} days')
         plt.setp(ax.get_xticklabels(),rotation=45, ha='right')
         plt.show()
+        
         return fig
 
     def total_wt_per_day_chart(self):
@@ -79,7 +84,7 @@ class workouts_charts:
         fig.autofmt_xdate(rotation=45) #Auto-formats the <date> only
         fig.tight_layout()
 
-        plt.show()
+        return fig
 
     def total_wt_per_week_chart(self):
         df = self.wa.total_weight_reps_per_week()
@@ -100,7 +105,7 @@ class workouts_charts:
         fig.autofmt_xdate(rotation=45) #Auto-formats the <date> only
         fig.tight_layout()
 
-        plt.show()
+        return fig
 
     def total_wt_per_month_chart(self):
         df = self.wa.total_weight_reps_per_month()
@@ -121,10 +126,83 @@ class workouts_charts:
         fig.autofmt_xdate(rotation=45) #Auto-formats the <date> only
         fig.tight_layout()
 
+        return fig
+
+    def avg_workout_duration_chart(self, items=5):
+        df = self.wa.avg_workout_duration().sort_values(by='Duration (min)', ascending=False).head(items)
+        print(df)
+
+        #Since <matplotlib? takes date as a date-time obj, we need to convert it into a string  
+        #String will display only the required values while dt obj will display all the dates
+        df['Date_Str'] = df['Date'].dt.strftime('%Y-%m-%d')
+
+        fig, ax = plt.subplots()
+
+        ax.bar(df['Date_Str'], df['Duration (min)'])
+        ax.set_title('Average workout duration (max)')
+        ax.set_xlabel('Date')
+        ax.set_ylabel('Duration (min)')
+
+        fig.autofmt_xdate(rotation=45)
+
+        return fig
+
+    def top_day_in_week_chart(self, week=34):
+        df = self.wa.top_day_in_week(week)
+        print(df)
+
+        #Convert date from date-time obj to string
+        df['Date'] = df['Date'].dt.strftime('%d-%m-%Y')
+
+        fig, ax1 = plt.subplots()
+        width = 0.35
+
+        #Create an array of values [0 - <len(date)>]. This does not include actual dates, but an array of their indices
+        x = np.arange(len(df['Date']))
+
+        ax1.set_xlabel('Date')
+        ax1.set_ylabel('Total Weight')
+        ax1.bar(x-width/2, df['Total Vol'], width, color='skyblue')
+
+        ax2 = ax1.twinx()
+        ax2.set_ylabel('Duration')
+        ax2.bar(x+width/2, df['Duration'], width/2, color='teal')
+
+        #To set ticks on x-axis as per the x array
+        ax1.set_xticks(x)
+        ax1.set_xticklabels(df['Date'])
+
+        return fig
+
+    def top_day_in_month_chart(self, month=10):
+        df = self.wa.top_day_in_month(month)
+        print(df)
+
+        #Convert date from date-time obj to string
+        df['Date'] = df['Date'].dt.strftime('%d-%m-%Y')
+
+        fig, ax1 = plt.subplots()
+        width = 0.35
+
+        #Create an array of values [0 - <len(date)>]. This does not include actual dates, but an array of their indices
+        x = np.arange(len(df['Date']))
+
+        ax1.set_xlabel('Date')
+        ax1.set_ylabel('Total Weight')
+        ax1.bar(x-width/2, df['Total Vol'], width, color='skyblue')
+
+        ax2 = ax1.twinx()
+        ax2.set_ylabel('Duration')
+        ax2.bar(x+width/2, df['Duration'], width/2, color='teal')
+
+        #To set ticks on x-axis as per the x array
+        ax1.set_xticks(x)
+        ax1.set_xticklabels(df['Date'])
+
         plt.show()
 
 wc = workouts_charts(workouts=wa, progress=pa)
-wc.total_wt_per_month_chart()
+wc.top_day_in_month_chart(10)
 
 # fig, axes = plt.subplots(2, 2)  # 2x2 grid of axes
 # axes[0, 0].plot([1, 2, 3], [1, 4, 9])   # top-left
