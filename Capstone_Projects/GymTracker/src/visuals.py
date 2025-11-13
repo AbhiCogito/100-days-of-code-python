@@ -1,19 +1,19 @@
 import sys, os
+import matplotlib.pyplot as plt # Same as <from matplotlib import pyplot as plt>
+import numpy as np
 from pathlib import Path
+from analysis.workouts import WorkoutAnalyzer
+from analysis.progress import ProgressAnalyzer
 
 os.system("clear")
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-# from analysis.summary import progress_data
-from analysis.workouts import WorkoutAnalyzer
-from analysis.progress import ProgressAnalyzer
-import matplotlib.pyplot as plt # Same as <from matplotlib import pyplot as plt>
-import numpy as np
+ITEMS = 5
+MONTH = 10
+WEEK = 41
 
-# Now use the analyzers
-wa = WorkoutAnalyzer(None)
-pa = ProgressAnalyzer(None)
+
 
 class workouts_charts:
 
@@ -22,7 +22,7 @@ class workouts_charts:
         self.wa = workouts if workouts else WorkoutAnalyzer(None)
         self.pa = progress if progress else ProgressAnalyzer(None)
 
-    def vol_per_exercise_chart(self, items=3):
+    def vol_per_exercise_chart(self, items=ITEMS):
 
         df = self.wa.vol_per_exercise()
         vol_data = df.sort_values(by='Total Vol', ascending=False)
@@ -36,7 +36,7 @@ class workouts_charts:
 
         return fig
 
-    def vol_per_title_chart(self, items=5):
+    def vol_per_title_chart(self, items=ITEMS):
 
         df = self.wa.vol_per_title().head(items).copy()
         print(df)
@@ -51,7 +51,7 @@ class workouts_charts:
         
         return fig
 
-    def avg_wt_per_rep_per_ex_chart(self, items=5):
+    def avg_wt_per_rep_per_ex_chart(self, items=ITEMS):
         df = self.wa.avg_wt_per_rep_per_exercise().head(items).copy()
         print(df)
 
@@ -128,7 +128,7 @@ class workouts_charts:
 
         return fig
 
-    def avg_workout_duration_chart(self, items=5):
+    def avg_workout_duration_chart(self, items=ITEMS):
         df = self.wa.avg_workout_duration().sort_values(by='Duration (min)', ascending=False).head(items)
         print(df)
 
@@ -147,7 +147,7 @@ class workouts_charts:
 
         return fig
 
-    def top_day_in_week_chart(self, week=34):
+    def top_day_in_week_chart(self, week=WEEK):
         df = self.wa.top_day_in_week(week)
         print(df)
 
@@ -174,7 +174,7 @@ class workouts_charts:
 
         return fig
 
-    def top_day_in_month_chart(self, month=10):
+    def top_day_in_month_chart(self, month=MONTH):
         df = self.wa.top_day_in_month(month)
         print(df)
 
@@ -201,7 +201,7 @@ class workouts_charts:
 
         plt.show()
 
-wc = workouts_charts(workouts=wa, progress=pa)
+wc = workouts_charts()
 wc.top_day_in_month_chart(10)
 
 # fig, axes = plt.subplots(2, 2)  # 2x2 grid of axes
