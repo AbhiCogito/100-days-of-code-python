@@ -12,7 +12,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 ITEMS = 5
 MONTH = 10
 WEEK = 41
-
+YEAR = 2025
 
 
 class workouts_charts:
@@ -199,10 +199,85 @@ class workouts_charts:
         ax1.set_xticks(x)
         ax1.set_xticklabels(df['Date'])
 
+        return fig
+
+    def top_week_in_month_chart(self, month=MONTH):
+        df = self.wa.top_week_in_month(month)
+        print(df)
+
+        fig, ax1 = plt.subplots()
+        width = 0.35
+
+        #Create an array of values [0 - <len(date)>]. This does not include actual dates, but an array of their indices
+        x = np.arange(len(df['Week']))
+
+        ax1.set_xlabel('Week')
+        ax1.set_ylabel('Total Weight')
+        ax1.bar(x-width/2, df['Total Vol'], width, color='skyblue')
+
+        ax2 = ax1.twinx()
+        ax2.set_ylabel('Duration')
+        ax2.bar(x+width/2, df['Duration'], width/2, color='teal')
+
+        #To set ticks on x-axis as per the x array
+        ax1.set_xticks(x)
+        ax1.set_xticklabels(df['Week'])
+
+        return fig
+
+    def top_month_in_year_chart(self, year=YEAR):
+        df = self.wa.top_month_in_year(year)
+        print(df)
+
+        fig, ax1 = plt.subplots()
+        width = 0.35
+
+        #Create an array of values [0 - <len(date)>]. This does not include actual dates, but an array of their indices
+        x = np.arange(len(df['Month']))
+
+        ax1.set_xlabel('Month')
+        ax1.set_ylabel('Total Weight')
+        ax1.bar(x-width/2, df['Total Vol'], width, color='skyblue')
+
+        ax2 = ax1.twinx()
+        ax2.set_ylabel('Duration')
+        ax2.bar(x+width/2, df['Duration'], width, color='teal')
+
+        #To set ticks on x-axis as per the x array
+        ax1.set_xticks(x)
+        ax1.set_xticklabels(df['Month'])
+
+        return fig
+
+    def top_day_in_year_chart(self, year=YEAR):
+        df = self.wa.top_day_in_year(year)
+        print(df)
+
+        fig, ax1 = plt.subplots()
+        width = 0.35
+
+        #Convert date from date-time obj to string
+        df['Date'] = df['Date'].dt.strftime('%d-%m-%Y')
+
+        #Create an array of values [0 - <len(date)>]. This does not include actual dates, but an array of their indices
+        x = np.arange(len(df['Date']))
+
+        ax1.set_xlabel('Date')
+        ax1.set_ylabel('Total Weight')
+        ax1.bar(x-width/2, df['Total Vol'], width, color='skyblue')
+
+        ax2 = ax1.twinx()
+        ax2.set_ylabel('Duration')
+        ax2.bar(x+width/2, df['Duration'], width, color='teal')
+
+        #To set ticks on x-axis as per the x array
+        ax1.set_xticks(x)
+        ax1.set_xticklabels(df['Date'])
         plt.show()
+        # return fig
 
 wc = workouts_charts()
-wc.top_day_in_month_chart(10)
+wc.top_day_in_year_chart()
 
 # fig, axes = plt.subplots(2, 2)  # 2x2 grid of axes
 # axes[0, 0].plot([1, 2, 3], [1, 4, 9])   # top-left
