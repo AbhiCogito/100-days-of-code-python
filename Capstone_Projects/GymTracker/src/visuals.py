@@ -15,12 +15,11 @@ WEEK = 41
 YEAR = 2025
 
 
-class workouts_charts:
+class WorkoutCharts:
 
-    def __init__(self, workouts=None, progress=None):
+    def __init__(self, workouts=None):
 
         self.wa = workouts if workouts else WorkoutAnalyzer(None)
-        self.pa = progress if progress else ProgressAnalyzer(None)
 
     def vol_per_exercise_chart(self, items=ITEMS):
 
@@ -273,11 +272,41 @@ class workouts_charts:
         #To set ticks on x-axis as per the x array
         ax1.set_xticks(x)
         ax1.set_xticklabels(df['Date'])
-        plt.show()
-        # return fig
 
-wc = workouts_charts()
-wc.top_day_in_year_chart()
+        return fig
+
+
+class ProgressCharts:
+
+    def __init__(self, progress=None):
+        self.pa = progress if progress else ProgressAnalyzer(None)
+
+    def exercise_monthly_variety_chart(self):
+        df = self.pa.exercise_monthly_variety()
+        df = df[['Month','New Exercises count', 'Old Exercises count', 'Unique Exercises',
+       'Total Exercises', 'Variety Score']]
+        print(df)
+
+        fig, ax1 = plt.subplots()
+
+        ax1.set_xlabel('Month')
+        ax1.set_ylabel('Total Exercises')
+        ax1.bar(df['Month'], df['Total Exercises'], color='skyblue', label='Total Exercises')
+
+        ax2 = ax1.twinx()
+        ax2.set_ylabel('Duration')
+        ax2.plot(df['Month'], df['Variety Score'], color='red', label='Variety Index')
+        fig.legend()
+        #To set ticks on x-axis as per the x array
+        # ax1.set_xticks(x)
+        # ax1.set_xticklabels(df['Month'])
+        plt.show()
+
+pa = ProgressCharts()
+pa.exercise_monthly_variety_chart()
+
+# wc = workouts_charts()
+# wc.top_day_in_year_chart()
 
 # fig, axes = plt.subplots(2, 2)  # 2x2 grid of axes
 # axes[0, 0].plot([1, 2, 3], [1, 4, 9])   # top-left
