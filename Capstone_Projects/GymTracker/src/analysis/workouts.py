@@ -3,7 +3,7 @@ import json
 import pandas as pd
 
 # Defines how many results per query is needed. Say 3 or 5 days per month.
-RESULTS_SIZE = 3
+RESULTS_SIZE = 5
 
 base_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.abspath(os.path.join(base_dir, os.pardir, os.pardir))
@@ -57,6 +57,7 @@ class WorkoutAnalyzer:
         return(
             self.df.groupby('Exercise')['Weight per rep']
             .mean()
+            .sort_values(ascending=False)
             .reset_index()
         )
     

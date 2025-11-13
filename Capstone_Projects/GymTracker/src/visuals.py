@@ -45,9 +45,86 @@ class workouts_charts:
         ax.set_title(f'Total vol for top {items} days')
         plt.setp(ax.get_xticklabels(),rotation=45, ha='right')
         plt.show()
+        return fig
+
+    def avg_wt_per_rep_per_ex_chart(self, items=5):
+        df = self.wa.avg_wt_per_rep_per_exercise().head(items).copy()
+        print(df)
+
+        fig, ax = plt.subplots()
+        ax.bar(df['Exercise'], df['Weight per rep'])
+        ax.set_xlabel('Exercise')
+        ax.set_ylabel('Average weight per rep')
+        ax.set_title(f'Total vol for top {items} days')
+        plt.setp(ax.get_xticklabels(),rotation=45, ha='right')
+        plt.show()
+        return fig
+
+    def total_wt_per_day_chart(self):
+        df = self.wa.total_weight_reps_per_day()
+        print(df)
+
+        fig, ax1 = plt.subplots()
+        plt.title('Total volume and reps over date')
+        
+        ax1.set_xlabel('Date')
+        ax1.set_ylabel('Total Vol (kg)', color='blue')
+        ax1.scatter(df['Date'], df['Total Vol'], color='blue', marker='x')
+
+        ax2 = ax1.twinx() #Twin along the same x-axis
+
+        ax2.set_ylabel('Reps', color='red')
+        ax2.scatter(df['Date'], df['Reps'], color='red', marker='o')
+
+        fig.autofmt_xdate(rotation=45) #Auto-formats the <date> only
+        fig.tight_layout()
+
+        plt.show()
+
+    def total_wt_per_week_chart(self):
+        df = self.wa.total_weight_reps_per_week()
+        print(df)
+
+        fig, ax1 = plt.subplots()
+        plt.title('Total volume and reps over date')
+        
+        ax1.set_xlabel('Week')
+        ax1.set_ylabel('Total Vol (kg)', color='blue')
+        ax1.scatter(df['Week'], df['Total Vol'], color='blue', marker='x')
+
+        ax2 = ax1.twinx() #Twin along the same x-axis
+
+        ax2.set_ylabel('Reps', color='red')
+        ax2.scatter(df['Week'], df['Reps'], color='red', marker='o')
+
+        fig.autofmt_xdate(rotation=45) #Auto-formats the <date> only
+        fig.tight_layout()
+
+        plt.show()
+
+    def total_wt_per_month_chart(self):
+        df = self.wa.total_weight_reps_per_month()
+        print(df)
+
+        fig, ax1 = plt.subplots()
+        plt.title('Total volume and reps over date')
+        
+        ax1.set_xlabel('Month')
+        ax1.set_ylabel('Total Vol (kg)', color='blue')
+        ax1.scatter(df['Month'], df['Total Vol'], color='blue', marker='x')
+
+        ax2 = ax1.twinx() #Twin along the same x-axis
+
+        ax2.set_ylabel('Reps', color='red')
+        ax2.scatter(df['Month'], df['Reps'], color='red', marker='o')
+
+        fig.autofmt_xdate(rotation=45) #Auto-formats the <date> only
+        fig.tight_layout()
+
+        plt.show()
 
 wc = workouts_charts(workouts=wa, progress=pa)
-wc.vol_per_title_chart()
+wc.total_wt_per_month_chart()
 
 # fig, axes = plt.subplots(2, 2)  # 2x2 grid of axes
 # axes[0, 0].plot([1, 2, 3], [1, 4, 9])   # top-left
