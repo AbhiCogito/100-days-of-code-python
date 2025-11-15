@@ -1,5 +1,3 @@
-
-```markdown
 ```
 # 🏋️‍♂️ AI-Powered Fitness Insights from HEVY App Data
 Turn your workout logs into intelligent, data-driven fitness reports using Python, automation, and LLM-generated insights.
@@ -282,8 +280,3 @@ email-validator==2.2.0
 **Abhineet**
 📧 [[abhineet.singh.2017@gmail.com](mailto:abhineet.singh.2017@gmail.com)]
 🌐 [[LinkedIn](https://www.linkedin.com/in/singhabhineet/) / [GitHub](https://github.com/AbhiCogito)]
-
-```
-```
-
----
