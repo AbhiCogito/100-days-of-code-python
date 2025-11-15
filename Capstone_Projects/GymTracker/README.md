@@ -1,4 +1,3 @@
-```markdown
 <!-- Banner -->
 <p align="center">
   <img src="https://img.shields.io/badge/PROJECT-AI%20Fitness%20Insights-orange?style=for-the-badge&logo=dumbbell&logoColor=white">
@@ -120,7 +119,7 @@ ai-fitness-insights/
 │   └── exploration.ipynb
 ├── requirements.txt
 └── README.md
-````
+```
 
 ---
 
@@ -237,29 +236,24 @@ This will:
 
 ## 🧱 Requirements
 
-```
-<p align="left">
-  <img src="https://img.shields.io/badge/requests-%23254e70.svg?style=flat&logoColor=white">
-  <img src="https://img.shields.io/badge/pandas-%23150458.svg?style=flat&logo=pandas&logoColor=white">
-  <img src="https://img.shields.io/badge/numpy-%23013243.svg?style=flat&logo=numpy&logoColor=white">
-  <img src="https://img.shields.io/badge/matplotlib-%230077b5.svg?style=flat">
-  <img src="https://img.shields.io/badge/gspread-%2300c853.svg?style=flat">
-  <img src="https://img.shields.io/badge/oauth2client-%23fbbc05.svg?style=flat">
-  <img src="https://img.shields.io/badge/python--dotenv-%23375181.svg?style=flat">
-  <img src="https://img.shields.io/badge/groq--api-purple?style=flat">
-  <img src="https://img.shields.io/badge/email--validator-%23ff6f00.svg?style=flat">
-</p>
-
-```
+![requests](https://img.shields.io/badge/requests-2.31.0-254e70?style=flat&logo=python&logoColor=white)
+![pandas](https://img.shields.io/badge/pandas-2.0.0-150458?style=flat&logo=pandas&logoColor=white)
+![numpy](https://img.shields.io/badge/numpy-1.24.0-013243?style=flat&logo=numpy&logoColor=white)
+![matplotlib](https://img.shields.io/badge/matplotlib-3.7.0-0077b5?style=flat&logo=plotly&logoColor=white)
+![gspread](https://img.shields.io/badge/gspread-5.9.0-00c853?style=flat&logo=google&logoColor=white)
+![oauth2client](https://img.shields.io/badge/oauth2client-4.1.3-fbbc05?style=flat&logo=google&logoColor=white)
+![python-dotenv](https://img.shields.io/badge/python--dotenv-1.0.0-375181?style=flat&logo=python&logoColor=white)
+![groq](https://img.shields.io/badge/groq--api-latest-purple?style=flat&logo=ai&logoColor=white)
 
 ---
 
 ## 👤 Author
 
-**Abhineet Singh**
-📧 [abhineet.singh.2017@gmail.com](mailto:abhineet.singh.2017@gmail.com)
-🔗 GitHub: [https://github.com/AbhiCogito](https://github.com/AbhiCogito)
+**Abhineet Singh**  
+📧 [abhineet.singh.2017@gmail.com](mailto:abhineet.singh.2017@gmail.com)  
+🔗 GitHub: [https://github.com/AbhiCogito](https://github.com/AbhiCogito)  
 🔗 LinkedIn: [https://www.linkedin.com/in/singhabhineet/](https://www.linkedin.com/in/singhabhineet/)
 
-```
-```
+---
+
+<p align="center">Made with ❤️ for fitness enthusiasts who love data</p>
