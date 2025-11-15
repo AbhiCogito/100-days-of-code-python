@@ -1,66 +1,107 @@
-```
-# 🏋️‍♂️ AI-Powered Fitness Insights from HEVY App Data
-Turn your workout logs into intelligent, data-driven fitness reports using Python, automation, and LLM-generated insights.
+````markdown
+<!-- Banner -->
+<p align="center">
+  <img src="https://img.shields.io/badge/PROJECT-AI%20Fitness%20Insights-orange?style=for-the-badge&logo=dumbbell&logoColor=white">
+</p>
+
+<h1 align="center">🏋️‍♂️ AI-Powered Fitness Insights from HEVY App Data</h1>
+<p align="center">Transform raw HEVY workout logs into intelligent, visual, AI-powered reports.</p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Python-3.10+-blue.svg">
-  <img src="https://img.shields.io/badge/Google%20Sheets%20API-Enabled-success">
-  <img src="https://img.shields.io/badge/HEVY%20API-Data%20Source-orange">
-  <img src="https://img.shields.io/badge/LLM-Pluggable%20Backend%20(Groq%20Currently)-purple">
-  <img src="https://img.shields.io/badge/Automation-Email%20Reports-lightgrey">
+  <img src="https://img.shields.io/badge/Python-3.10+-blue?style=flat-square">
+  <img src="https://img.shields.io/badge/Google%20Sheets-API%20Enabled-success?style=flat-square">
+  <img src="https://img.shields.io/badge/HEVY-API%20Source-orange?style=flat-square">
+  <img src="https://img.shields.io/badge/LLM-Groq%20Backend-purple?style=flat-square">
+  <img src="https://img.shields.io/badge/Automation-Email%20Reports-lightgrey?style=flat-square">
 </p>
 
 ---
 
-## 🧠 Project Overview
-
-This project builds a complete automated pipeline from your **HEVY workout logs** to an **AI-generated fitness report**:
-
-1. Fetches workout logs from the **HEVY API**
-2. Cleans and stores data in **Google Sheets**
-3. Analyzes training volume, trends, intensity & muscle focus
-4. Generates natural-language summaries using a **pluggable LLM backend**  
-   - **Currently using: Groq API (Mixtral / Llama-3)**
-5. Renders progress charts (volume trend, focus pie chart)
-6. Emails weekly or monthly fitness reports with visuals + AI explanations
+## 📌 Table of Contents
+- [🚀 Overview](#-overview)
+- [🎯 Features](#-features)
+- [🧩 Tech Stack](#-tech-stack)
+- [📁 Folder Structure](#-folder-structure)
+- [📊 Data Pipeline](#-data-pipeline)
+- [📈 Insights & Analysis](#-insights--analysis)
+- [📄 Sample AI Report (PDF)](#-sample-ai-report-pdf)
+- [⚙️ Installation](#️-installation)
+- [🔧 Environment Variables](#-environment-variables)
+- [▶️ Running the Pipeline](#️-running-the-pipeline)
+- [📬 Automation Options](#-automation-options)
+- [🧱 Requirements](#-requirements)
+- [👤 Author](#-author)
 
 ---
 
-## 🎯 Objectives
+## 🚀 Overview
+This project converts your **HEVY workout logs** into fully automated, AI-generated fitness reports.  
 
-| Goal | Description |
-|------|-------------|
-| 📡 Data Integration | Automatically fetch and store HEVY data into Google Sheets |
-| 📊 Analytics | Compute volume, intensity, frequency, trends |
-| 🧠 NLP Insights | AI-powered summaries using Groq-backed LLMs |
-| 📈 Visualization | Automated chart generation via Matplotlib |
-| 📬 Reporting | Email reports containing text + charts |
+It integrates:
+- Raw workout data via **HEVY API**
+- Data cleaning + Google Sheets sync
+- Python-based analytics (volume, intensity, trends)
+- Matplotlib charts
+- Groq LLM summaries
+- Automated PDF or email reports
+
+Perfect for lifters who want **objective feedback**, **trend insights**, and **self-tracking automation**.
+
+---
+
+## 🎯 Features
+
+### 📡 Data Automation
+- Fetches your latest workout logs
+- Cleans & normalizes data
+- Syncs workouts to Google Sheets
+
+### 📊 Analytics Engine
+- Training volume trends  
+- Exercise-wise breakdowns  
+- Streaks, rest days, consistency  
+- Progressive overload tracking  
+- Muscle group distribution  
+
+### 🧠 AI-Generated Insights
+- Natural language summaries  
+- Weekly + monthly insights  
+- Powered by **Groq LLM backend** (pluggable: can swap OpenAI/Gemini/DeepSeek)
+
+### 📈 Visual Dashboards
+- Volume trend chart  
+- Focus distribution  
+- Intensity charts  
+- Auto-saved to `/visuals/`
+
+### 📬 Email & PDF Reports
+- Weekly digest in email  
+- PDF export of visuals + summaries  
 
 ---
 
 ## 🧩 Tech Stack
 
 | Component | Technology |
-|-----------|------------|
-| **Backend Logic** | Python |
-| **Data Fetching** | HEVY API (`requests`) |
-| **Storage** | Google Sheets (`gspread`) |
-| **Analysis** | Pandas, NumPy |
-| **Visualization** | Matplotlib |
-| **LLM Backend** | *Pluggable* (Groq API currently) |
-| **Email Automation** | `smtplib` or Gmail API |
-| **Scheduling** | Cron / PythonAnywhere / Apps Script |
+|----------|------------|
+| Backend | Python |
+| APIs | HEVY API, Google Sheets |
+| Data | pandas, numpy |
+| Visuals | matplotlib |
+| LLM | Groq API (pluggable backend) |
+| Automation | Cron / Apps Script |
+| Email | smtplib / Gmail API |
 
 ---
 
-## 🗂 Folder Structure
+## 📁 Folder Structure
 
 ```bash
 ai-fitness-insights/
 ├── data/
 │   ├── workouts_raw.json
 │   ├── workouts_clean.csv
-│   ├── metrics_summary.csv
+│   └── metrics_summary.csv
 ├── src/
 │   ├── fetch_hevy_data.py
 │   ├── analyze_workouts.py
@@ -70,213 +111,152 @@ ai-fitness-insights/
 │   ├── visuals/
 │   │   ├── generate_visuals.py
 │   │   └── chart_helpers.py
-│   ├── helpers/
-│   │   ├── clean_hevy_data.py
-│   │   └── save_to_gsheets.py
+│   └── helpers/
+│       ├── clean_hevy_data.py
+│       └── save_to_gsheets.py
 ├── visuals/
-│   ├── volume_trend.png
-│   ├── focus_piechart.png
-│   ├── report_sample.png
+│   └── 2025-11-15_Workout_Report.pdf
 ├── notebooks/
-│   ├── exploration.ipynb
-├── README.md
+│   └── exploration.ipynb
 ├── requirements.txt
-└── LICENSE
+└── README.md
+````
 
 ---
 
-## 🧮 Dataset Schema
-
-| Field              | Description                                            |
-| ------------------ | ------------------------------------------------------ |
-| `date`             | Workout date                                           |
-| `title`            | Session title                                          |
-| `exercise`         | Exercise name                                          |
-| `duration`         | Session or set duration                                |
-| `weight`           | Weight used                                            |
-| `reps`             | Repetitions                                            |
-| `distance`         | Distance (if cardio)                                   |
-| `id`               | HEVY set ID                                            |
-| **Derived fields** | `total_volume`, `muscle_group`, `volume_per_min`, etc. |
-
----
-# 📊 Workout Data Analysis Plan
-
-The goal of the `analyze_workouts.py` module is to uncover patterns, progress, and insights from HEVY workout data.  
-This phase focuses on understanding training volume, intensity, frequency, and overall progression trends.
-
----
-
-## 🏋️‍♂️ Volume & Intensity Tracking
-
-These metrics quantify how much total work is being performed and how your training load evolves.
-
-| Metric                          | Description                                                                 |
-|---------------------------------|-----------------------------------------------------------------------------|
-| Total Volume per Day            | `Sum(Weight × Reps)` grouped by `Date` — overall workload per day.         |
-| Volume per Exercise             | `Weight × Reps` grouped by `Exercise` — identifies your heaviest contributors. |
-| Average Weight per Rep per Exercise | `Weight ÷ Reps` averaged per `Exercise` — gauges workout intensity.     |
-| Total Reps (Daily/Weekly/Monthly) | Tracks endurance and overall workload trends.                           |
-| Workout Duration per Session    | Total `Duration` per `Title` or `Date`.                                    |
-| Average Load per Workout        | Mean `Weight` lifted per workout session.                                  |
-| Top 5 Highest Volume Days       | Identify peak training days for recovery balance.                          |
-
----
-
-## 📈 Progress & Trend Analysis
-
-These metrics evaluate improvements over time and highlight consistency or plateauing.
-
-| Metric                          | Description                                                                 |
-|---------------------------------|-----------------------------------------------------------------------------|
-| Weekly Weight Progression per Exercise | Average or max `Weight` per `Exercise` by week — track progressive overload. |
-| Reps Progression per Exercise   | Average `Reps` trend over time — monitors stamina and endurance gains.     |
-| Weight × Reps Trend             | Proxy for total effort per `Exercise` — plotted weekly to visualize growth. |
-| Exercise Frequency Trend        | How often each `Exercise` appears per week or month — identifies focus or neglect. |
-| New vs. Repeated Exercises      | Detect variety in workouts vs. routine repetition.                         |
-| Streak Tracking                 | Consecutive workout days — helps measure discipline.                       |
-| Rest Day Detection              | Identify gaps between sessions to balance recovery.                        |
-
----
-
-## 🧠 Technique & Efficiency Metrics
-
-These measure how effectively workouts are structured and executed.
-
-| Metric                          | Description                                                                 |
-|---------------------------------|-----------------------------------------------------------------------------|
-| Average Duration per Exercise   | Highlights exercises that take longer than expected.                       |
-| Reps per Minute                 | `Reps ÷ Duration` — estimates pacing.                                      |
-| Weight per Minute               | `(Weight × Reps) ÷ Duration` — indicates workout intensity over time.      |
-| Distance Tracking (for cardio)  | Total `Distance` per workout when `Distance > 0`.                          |
-| Volume per Minute               | Combines workload and time — helps assess training density.                |
-| Set Density                     | Number of sets completed per minute or per workout duration.               |
-
----
-
-## 🧪 Advanced Insights & Comparisons
-
-These deeper analyses help you spot patterns, imbalances, and efficiency issues.
-
-| Metric                          | Description                                                                 |
-|---------------------------------|-----------------------------------------------------------------------------|
-| Push vs. Pull Day Comparison    | Compare total volume, duration, and load across push/pull workouts.        |
-| Muscle Group Analysis           | Group exercises manually (Chest, Legs, Back, etc.) and compare volume distribution. |
-| Plateau Detection               | Identify weeks where `Weight` or `Reps` show little to no growth.          |
-| Overtraining Signals            | Detect abnormally high volume/duration days that may suggest fatigue.      |
-| Workout Diversity Index         | Ratio of unique exercises to total exercises — measures variety.           |
-| Performance Consistency         | Standard deviation of `Volume` or `Reps` over time — measures stability.   |
-| Progress vs Fatigue Correlation| Compare recent volume spikes with reduced `Reps` or `Weights`.             |
-
----
-
-## ⚙️ How It Works
+## 📊 Data Pipeline
 
 ```mermaid
 flowchart LR
-A[HEVY API] --> B[Google Sheets]
-A --> C[Python Analysis Scripts]
-C --> B[Google Sheets]
-C --> D[LLM Summary Generator]
-D --> B[Google Sheets]
-D --> E[Email Composer]
-E --> F[Weekly Report to Inbox]
+    A[HEVY API] --> B[Google Sheets]
+    A --> C[Python Analysis Engine]
+    C --> B
+    C --> D[Groq LLM Summary]
+    D --> E[Email Composer]
+    E --> F[Final Weekly Report]
 ```
 
 ---
 
-## 📊 Example Weekly Report
+## 📈 Insights & Analysis
 
-```
-Subject: 🏋️ Weekly Fitness Insights (Oct 21–27)
+### 🔹 Volume & Intensity Metrics
 
-You completed 5 workouts this week with a total training volume of 48,200 lbs.
-Upper body accounted for 62% of your work, led by Bench Press and Shoulder Press.
-Your PR for Deadlift improved by 8%.
-Leg training frequency dipped slightly — consider adding one lower body day.
+* Total daily/weekly training volume
+* Avg weight × reps
+* Exercise volume distribution
+* Top 5 highest-effort days
 
-Top 3 Exercises:
-1. Bench Press – 12 sets, 9,600 lbs total
-2. Lat Pulldown – 8 sets, 6,400 lbs
-3. Deadlift – 5 sets, 7,000 lbs
+### 🔹 Progress Tracking
 
-📈 Keep it up! You’re building strength and consistency.
-```
+* Weekly weight progression
+* Reps progression
+* Overload tracking
+* Exercise frequency timeline
+
+### 🔹 Technique & Efficiency
+
+* Volume per minute
+* Reps per minute
+* Set density
+* Duration per exercise
+
+### 🔹 Advanced Metrics
+
+* Muscle-group imbalance
+* Streaks & rest-day detection
+* Workout diversity index
+* Plateau identification
 
 ---
 
-## 📈 View Sample Workout Report (PDF)
+## 📄 Sample AI Report (PDF)
 
-[📄 Sample Workout Report (PDF)](https://github.com/AbhiCogito/100-days-of-code-python/blob/main/Capstone_Projects/GymTracker/visuals/2025-11-15_Workout_Report.pdf)
-
+👉 **[Click to view sample PDF](visuals/2025-11-15_Workout_Report.pdf)**
+(Auto-generated using your data + Groq-based AI summary.)
 
 ---
 
-## 🔧 Installation & Setup
+## ⚙️ Installation
 
 ```bash
 git clone https://github.com/AbhiCogito/ai-fitness-insights.git
 cd ai-fitness-insights
 pip install -r requirements.txt
 ```
-### 🔐 Environment Variables
-Create a .env file:
-HEVY_API_KEY=xxxxxxxx
-GROQ_API_KEY=xxxxxxxx
-SHEET_ID=xxxxxxxx
-EMAIL_ADDRESS=you@gmail.com
-EMAIL_PASSWORD=xxxxxxxx
 
-Google Sheets OAuth file:
+---
+
+## 🔧 Environment Variables
+
+Create a `.env` file:
+
+```
+HEVY_API_KEY=your_hevy_api_key
+GROQ_API_KEY=your_groq_key
+SHEET_ID=your_google_sheet_id
+EMAIL_ADDRESS=your_email
+EMAIL_PASSWORD=your_email_password
+```
+
+Google OAuth file:
+
+```
 credentials.json
+```
 
-### Add Credentials
+---
 
-* `.env` → store HEVY API key
-* `credentials.json` → Google Sheets credentials
-* Environment variables → Gmail SMTP login
-
-Run:
+## ▶️ Running the Pipeline
 
 ```bash
 python src/main.py
 ```
 
----
+This will:
 
-## 🧱 requirements.txt
-
-```
-requests==2.32.3
-pandas==2.2.3
-numpy==2.1.2
-matplotlib==3.9.2
-plotly==5.24.1
-gspread==6.1.2
-oauth2client==4.1.3
-python-dotenv==1.0.1
-openai==1.50.2
-google-generativeai==0.7.2
-deepseek==0.3.1
-smtplib2==1.1.0
-email-validator==2.2.0
-```
+1. Fetch data
+2. Clean + sync
+3. Analyze
+4. Generate charts
+5. Create AI summary
+6. Email it
 
 ---
 
 ## 📬 Automation Options
 
-| Platform                         | Method                         |
-| -------------------------------- | ------------------------------ |
-| **Google Apps Script**           | Schedule daily/weekly triggers |
-| **PythonAnywhere / Replit**      | Run recurring jobs             |
-| **Local Cron Job (Linux/macOS)** | Automate with `crontab`        |
-| **Windows Task Scheduler**       | Schedule local Python scripts  |
+| Platform           | Method               |
+| ------------------ | -------------------- |
+| Google Apps Script | Weekly fetch-trigger |
+| PythonAnywhere     | Run daily cron jobs  |
+| Linux/macOS        | `crontab -e`         |
+| Windows            | Task Scheduler       |
 
 ---
 
-## 💡 Author
+## 🧱 Requirements
 
-**Abhineet**
-📧 [[abhineet.singh.2017@gmail.com](mailto:abhineet.singh.2017@gmail.com)]
-🌐 [[LinkedIn](https://www.linkedin.com/in/singhabhineet/) / [GitHub](https://github.com/AbhiCogito)]
+```
+requests
+pandas
+numpy
+matplotlib
+gspread
+oauth2client
+python-dotenv
+groq
+email-validator
+```
+
+---
+
+## 👤 Author
+
+**Abhineet Singh**
+📧 [abhineet.singh.2017@gmail.com](mailto:abhineet.singh.2017@gmail.com)
+🔗 GitHub: [https://github.com/AbhiCogito](https://github.com/AbhiCogito)
+🔗 LinkedIn: [https://www.linkedin.com/in/singhabhineet/](https://www.linkedin.com/in/singhabhineet/)
+
+```
+```
