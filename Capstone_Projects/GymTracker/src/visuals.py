@@ -32,19 +32,19 @@ class WorkoutCharts:
         ax.set_xlabel('Exercise Name')
         ax.set_ylabel('Total volume in kg')
         ax.set_title(f'Total vol for top {items} exercises')
-
+        plt.setp(ax.get_xticklabels(),rotation=45, ha='right')
         return fig
 
     def vol_per_title_chart(self, items=ITEMS):
 
         df = self.wa.vol_per_title().head(items).copy()
-        print(df)
+        # print(df)
 
         fig, ax = plt.subplots()
         ax.bar(df['Title'], df['Total Vol'])
         ax.set_xlabel('Day Focus')
         ax.set_ylabel('Total volume in kg')
-        ax.set_title(f'Total vol for top {items} days')
+        ax.set_title(f'Total {items} days <Total Volume lifted>')
         plt.setp(ax.get_xticklabels(),rotation=45, ha='right')
         plt.show()
         
@@ -60,7 +60,7 @@ class WorkoutCharts:
         ax.set_ylabel('Average weight per rep')
         ax.set_title(f'Total vol for top {items} days')
         plt.setp(ax.get_xticklabels(),rotation=45, ha='right')
-        plt.show()
+        # plt.show()
         
         return fig
 
@@ -159,6 +159,7 @@ class WorkoutCharts:
         #Create an array of values [0 - <len(date)>]. This does not include actual dates, but an array of their indices
         x = np.arange(len(df['Date']))
 
+        ax1.set_title(f'Top days in week #{week}')
         ax1.set_xlabel('Date')
         ax1.set_ylabel('Total Weight')
         ax1.bar(x-width/2, df['Total Vol'], width, color='skyblue')
@@ -185,7 +186,7 @@ class WorkoutCharts:
 
         #Create an array of values [0 - <len(date)>]. This does not include actual dates, but an array of their indices
         x = np.arange(len(df['Date']))
-
+        ax1.set_title(f'Top days in month #{month}')
         ax1.set_xlabel('Date')
         ax1.set_ylabel('Total Weight')
         ax1.bar(x-width/2, df['Total Vol'], width, color='skyblue')
@@ -209,8 +210,8 @@ class WorkoutCharts:
 
         #Create an array of values [0 - <len(date)>]. This does not include actual dates, but an array of their indices
         x = np.arange(len(df['Week']))
-
-        ax1.set_xlabel('Week')
+        ax1.set_title(f'Top weeks in month #{month}')
+        ax1.set_xlabel('Week Number')
         ax1.set_ylabel('Total Weight')
         ax1.bar(x-width/2, df['Total Vol'], width, color='skyblue')
 
@@ -233,7 +234,7 @@ class WorkoutCharts:
 
         #Create an array of values [0 - <len(date)>]. This does not include actual dates, but an array of their indices
         x = np.arange(len(df['Month']))
-
+        ax1.set_title(f'Top months in year #{year}')
         ax1.set_xlabel('Month')
         ax1.set_ylabel('Total Weight')
         ax1.bar(x-width/2, df['Total Vol'], width, color='skyblue')
@@ -260,7 +261,7 @@ class WorkoutCharts:
 
         #Create an array of values [0 - <len(date)>]. This does not include actual dates, but an array of their indices
         x = np.arange(len(df['Date']))
-
+        ax1.set_title(f'Top days in year #{year}')
         ax1.set_xlabel('Date')
         ax1.set_ylabel('Total Weight')
         ax1.bar(x-width/2, df['Total Vol'], width, color='skyblue')
@@ -297,13 +298,12 @@ class ProgressCharts:
         ax2.set_ylabel('Duration')
         ax2.plot(df['Month'], df['Variety Score'], color='red', label='Variety Index')
         fig.legend()
-        #To set ticks on x-axis as per the x array
-        # ax1.set_xticks(x)
-        # ax1.set_xticklabels(df['Month'])
-        plt.show()
 
-pa = ProgressCharts()
-pa.exercise_monthly_variety_chart()
+        return fig
+
+
+# pa = ProgressCharts()
+# pa.exercise_monthly_variety_chart()
 
 # wc = workouts_charts()
 # wc.top_day_in_year_chart()
