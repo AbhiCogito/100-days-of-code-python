@@ -1,4 +1,4 @@
-````markdown
+```markdown
 <!-- Banner -->
 <p align="center">
   <img src="https://img.shields.io/badge/PROJECT-AI%20Fitness%20Insights-orange?style=for-the-badge&logo=dumbbell&logoColor=white">
@@ -238,15 +238,18 @@ This will:
 ## 🧱 Requirements
 
 ```
-requests
-pandas
-numpy
-matplotlib
-gspread
-oauth2client
-python-dotenv
-groq
-email-validator
+<p align="left">
+  <img src="https://img.shields.io/badge/requests-%23254e70.svg?style=flat&logoColor=white">
+  <img src="https://img.shields.io/badge/pandas-%23150458.svg?style=flat&logo=pandas&logoColor=white">
+  <img src="https://img.shields.io/badge/numpy-%23013243.svg?style=flat&logo=numpy&logoColor=white">
+  <img src="https://img.shields.io/badge/matplotlib-%230077b5.svg?style=flat">
+  <img src="https://img.shields.io/badge/gspread-%2300c853.svg?style=flat">
+  <img src="https://img.shields.io/badge/oauth2client-%23fbbc05.svg?style=flat">
+  <img src="https://img.shields.io/badge/python--dotenv-%23375181.svg?style=flat">
+  <img src="https://img.shields.io/badge/groq--api-purple?style=flat">
+  <img src="https://img.shields.io/badge/email--validator-%23ff6f00.svg?style=flat">
+</p>
+
 ```
 
 ---
