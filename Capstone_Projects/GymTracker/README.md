@@ -1,56 +1,57 @@
 
 ```markdown
 ```
-
 # 🏋️‍♂️ AI-Powered Fitness Insights from HEVY App Data
-
-> *Turn your workout logs into intelligent, data-driven fitness reports using Python, LLMs, and automation.*
+Turn your workout logs into intelligent, data-driven fitness reports using Python, automation, and LLM-generated insights.
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Python-3.10+-blue.svg" alt="Python">
-  <img src="https://img.shields.io/badge/Google%20Sheets%20API-Enabled-success" alt="Sheets API">
-  <img src="https://img.shields.io/badge/HEVY%20API-Data%20Source-orange" alt="HEVY API">
-  <img src="https://img.shields.io/badge/LLM-Integrated-purple" alt="LLM Integration">
-  <img src="https://img.shields.io/badge/Automation-Email%20Reports-lightgrey" alt="Automation">
+  <img src="https://img.shields.io/badge/Python-3.10+-blue.svg">
+  <img src="https://img.shields.io/badge/Google%20Sheets%20API-Enabled-success">
+  <img src="https://img.shields.io/badge/HEVY%20API-Data%20Source-orange">
+  <img src="https://img.shields.io/badge/LLM-Pluggable%20Backend%20(Groq%20Currently)-purple">
+  <img src="https://img.shields.io/badge/Automation-Email%20Reports-lightgrey">
 </p>
 
 ---
 
 ## 🧠 Project Overview
 
-This capstone project connects your **HEVY workout logs** to an automated analytics pipeline that:
+This project builds a complete automated pipeline from your **HEVY workout logs** to an **AI-generated fitness report**:
 
-1. Fetches exercise data via the **HEVY API**
-2. Stores and updates it in **Google Sheets**
-3. Analyzes training patterns, volume, and focus areas
-4. Generates natural-language summaries via an **LLM API**
-5. Emails you personalized weekly/monthly fitness reports — complete with charts and AI commentary
+1. Fetches workout logs from the **HEVY API**
+2. Cleans and stores data in **Google Sheets**
+3. Analyzes training volume, trends, intensity & muscle focus
+4. Generates natural-language summaries using a **pluggable LLM backend**  
+   - **Currently using: Groq API (Mixtral / Llama-3)**
+5. Renders progress charts (volume trend, focus pie chart)
+6. Emails weekly or monthly fitness reports with visuals + AI explanations
 
 ---
 
-## 🎯 Project Objectives
+## 🎯 Objectives
 
-| Goal                | Description                                              |
-| ------------------- | -------------------------------------------------------- |
-| 📡 Data Integration | Fetch and store HEVY data automatically in Google Sheets |
-| 📊 Analytics        | Compute training volume, frequency, and trends           |
-| 🧠 NLP Insights     | Generate human-like summaries using LLM APIs             |
-| 📈 Visualization    | Create workout dashboards and progress charts            |
-| 📬 Automation       | Deliver weekly email reports with text + visuals         |
+| Goal | Description |
+|------|-------------|
+| 📡 Data Integration | Automatically fetch and store HEVY data into Google Sheets |
+| 📊 Analytics | Compute volume, intensity, frequency, trends |
+| 🧠 NLP Insights | AI-powered summaries using Groq-backed LLMs |
+| 📈 Visualization | Automated chart generation via Matplotlib |
+| 📬 Reporting | Email reports containing text + charts |
 
 ---
 
 ## 🧩 Tech Stack
 
-| Component                          | Technology                                 |
-| ---------------------------------- | ------------------------------------------ |
-| **Backend Logic**                  | Python                                     |
-| **Data Fetching**                  | HEVY API (`requests`)                      |
-| **Data Storage**                   | Google Sheets (`gspread`)                  |
-| **Analytics & Visualization**      | Pandas, Matplotlib / Plotly                |
-| **Natural Language Summarization** | Gemini API / DeepSeek / OpenAI (Free Tier) |
-| **Email Automation**               | `smtplib` / Gmail API                      |
-| **Task Scheduling**                | Cron / Google Apps Script / PythonAnywhere |
+| Component | Technology |
+|-----------|------------|
+| **Backend Logic** | Python |
+| **Data Fetching** | HEVY API (`requests`) |
+| **Storage** | Google Sheets (`gspread`) |
+| **Analysis** | Pandas, NumPy |
+| **Visualization** | Matplotlib |
+| **LLM Backend** | *Pluggable* (Groq API currently) |
+| **Email Automation** | `smtplib` or Gmail API |
+| **Scheduling** | Cron / PythonAnywhere / Apps Script |
 
 ---
 
@@ -68,6 +69,9 @@ ai-fitness-insights/
 │   ├── llm_summary.py
 │   ├── email_report.py
 │   ├── main.py
+│   ├── visuals/
+│   │   ├── generate_visuals.py
+│   │   └── chart_helpers.py
 │   ├── helpers/
 │   │   ├── clean_hevy_data.py
 │   │   └── save_to_gsheets.py
@@ -80,22 +84,22 @@ ai-fitness-insights/
 ├── README.md
 ├── requirements.txt
 └── LICENSE
-```
 
 ---
 
 ## 🧮 Dataset Schema
 
-| Field      | Description                                       | Example             |
-| ---------- | ------------------------------------------------- | ------------------- |
-| `date`     | Date of the workout (YYYY-MM-DD)                  | 2025-10-30          |
-| `title`    | Name or title of the workout session              | Upper Body Strength |
-| `exercise` | Exercise performed in this set                    | Bench Press         |
-| `duration` | Duration of the workout or session (in minutes)   | 60.5                |
-| `weight`   | Weight used in this set (kg)                      | 55.0                |
-| `reps`     | Number of repetitions in this set                 | 10                  |
-| `distance` | Distance covered (if applicable, in meters or km) | 0.0                 |
-| `id`       | Unique set identifier from HEVY API               | set_abc123          |
+| Field              | Description                                            |
+| ------------------ | ------------------------------------------------------ |
+| `date`             | Workout date                                           |
+| `title`            | Session title                                          |
+| `exercise`         | Exercise name                                          |
+| `duration`         | Session or set duration                                |
+| `weight`           | Weight used                                            |
+| `reps`             | Repetitions                                            |
+| `distance`         | Distance (if cardio)                                   |
+| `id`               | HEVY set ID                                            |
+| **Derived fields** | `total_volume`, `muscle_group`, `volume_per_min`, etc. |
 
 ---
 # 📊 Workout Data Analysis Plan
@@ -200,25 +204,34 @@ Top 3 Exercises:
 
 📈 Keep it up! You’re building strength and consistency.
 ```
-
+📈 Example Visuals
+<p align="center"> <img src="visuals/volume_trend.png" width="500"> <img src="visuals/focus_piechart.png" width="380"> </p>
 ---
 
-## 📈 Example Visualization
+## 📈 View Sample Workout Report (PDF)
 
-<p align="center">
-  <img src="visuals/volume_trend.png" width="500">
-  <img src="visuals/focus_piechart.png" width="400">
-</p>
+[📄 View Sample Workout Report (PDF)](https://github.com/AbhiCogito/100-days-of-code-python/blob/main/Capstone_Projects/GymTracker/visuals/2025-11-15_Workout_Report.pdf)
+
 
 ---
 
 ## 🔧 Installation & Setup
 
 ```bash
-git clone https://github.com/<your-username>/ai-fitness-insights.git
+git clone https://github.com/AbhiCogito/ai-fitness-insights.git
 cd ai-fitness-insights
 pip install -r requirements.txt
 ```
+### 🔐 Environment Variables
+Create a .env file:
+HEVY_API_KEY=xxxxxxxx
+GROQ_API_KEY=xxxxxxxx
+SHEET_ID=xxxxxxxx
+EMAIL_ADDRESS=you@gmail.com
+EMAIL_PASSWORD=xxxxxxxx
+
+Google Sheets OAuth file:
+credentials.json
 
 ### Add Credentials
 
