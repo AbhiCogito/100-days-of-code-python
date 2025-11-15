@@ -204,13 +204,12 @@ Top 3 Exercises:
 
 📈 Keep it up! You’re building strength and consistency.
 ```
-📈 Example Visuals
-<p align="center"> <img src="visuals/volume_trend.png" width="500"> <img src="visuals/focus_piechart.png" width="380"> </p>
+
 ---
 
 ## 📈 View Sample Workout Report (PDF)
 
-[📄 View Sample Workout Report (PDF)](https://github.com/AbhiCogito/100-days-of-code-python/blob/main/Capstone_Projects/GymTracker/visuals/2025-11-15_Workout_Report.pdf)
+[📄 Sample Workout Report (PDF)](https://github.com/AbhiCogito/100-days-of-code-python/blob/main/Capstone_Projects/GymTracker/visuals/2025-11-15_Workout_Report.pdf)
 
 
 ---
